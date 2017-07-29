@@ -1,6 +1,7 @@
 package solarsensei.com.gatech.edu.solartracker;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -81,6 +82,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
     // SPP UUID service - this should work for most devices
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    private ProgressDialog mProgressDialog;
 
     final int handlerState = 0;
     private BluetoothSocket btSocket = null;
@@ -232,7 +234,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
 
-            connectionStatus.setText("Connecting...");
+           // connectionStatus.setText("Connecting...");
+            showProgressDialog();
+
+
             // Get the device MAC address, which is the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
@@ -264,10 +269,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             }
             mConnectedThread = new ConnectedThread(btSocket);
             mConnectedThread.start();
+            hideProgressDialog();
 
             //I send a character when resuming.beginning transmission to check device is connected
             //If it is not an exception will be thrown in the write method and finish() will be called
             mConnectedThread.write("x");
+            Toast.makeText(getBaseContext(), "Connected!", Toast.LENGTH_SHORT).show();
+
         }
     };
 
@@ -419,6 +427,23 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             }
         }
     }
+
+    private void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage("Updating profile...");
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    private void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.hide();
+        }
+    }
+
 
 
 }
