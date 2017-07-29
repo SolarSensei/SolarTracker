@@ -220,6 +220,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // Unregisters the sensor when the activity pauses.
         super.onPause();
         mSensorManager.unregisterListener(this);
+        try
+        {
+            //Don't leave Bluetooth sockets open when leaving activity
+            btSocket.close();
+        } catch (IOException e2) {
+            //insert code to deal with this
+        }
     }
 
     private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
