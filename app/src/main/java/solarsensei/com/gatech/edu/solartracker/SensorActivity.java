@@ -3,6 +3,7 @@ package solarsensei.com.gatech.edu.solartracker;
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,7 +32,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * Created by timothybaba on 5/19/17.
@@ -72,6 +76,14 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
     //constants
     private final static int REQUEST_ENABLE_BT = 1;
+
+    private ConnectedThread mConnectedThread;
+
+    // SPP UUID service - this should work for most devices
+    private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+
+    final int handlerState = 0;
+    private BluetoothSocket btSocket = null;
 
     @Override
     public final void onCreate(Bundle savedInstanceState) {
@@ -222,8 +234,41 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 //            Intent i = new Intent(DeviceListActivity.this, MainActivity.class);
 //            i.putExtra(EXTRA_DEVICE_ADDRESS, address);
 //            startActivity(i);
+
+            BluetoothDevice device = mBtAdapter.getRemoteDevice(address);
+
+            try {
+                btSocket = createBluetoothSocket(device);
+            } catch (IOException e) {
+                Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_LONG).show();
+            }
+            // Establish the Bluetooth socket connection.
+            try
+            {
+                btSocket.connect();
+            } catch (IOException e) {
+                try
+                {
+                    btSocket.close();
+                } catch (IOException e2)
+                {
+                    //insert code to deal with this
+                }
+            }
+            mConnectedThread = new ConnectedThread(btSocket);
+            mConnectedThread.start();
+
+            //I send a character when resuming.beginning transmission to check device is connected
+            //If it is not an exception will be thrown in the write method and finish() will be called
+            mConnectedThread.write("x");
         }
     };
+
+    private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
+
+        return  device.createRfcommSocketToServiceRecord(BTMODULEUUID);
+        //creates secure outgoing connecetion with BT device using UUID
+    }
 
     private void checkBluetoothStatus() {
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -335,6 +380,36 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             // dialog.findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);//make title viewable
 
 
+        }
+    }
+
+    //create new class for connect thread
+    private class ConnectedThread extends Thread {
+        private final OutputStream mmOutStream;
+
+        //creation of the connect thread
+        public ConnectedThread(BluetoothSocket socket) {
+            OutputStream tmpOut = null;
+
+            try {
+                //Create I/O streams for connection
+                tmpOut = socket.getOutputStream();
+            } catch (IOException e) { }
+
+            mmOutStream = tmpOut;
+        }
+
+        //write method
+        public void write(String input) {
+            byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
+            try {
+                mmOutStream.write(msgBuffer);                //write bytes over BT connection via outstream
+            } catch (IOException e) {
+                //if you cannot write, close the application
+                Toast.makeText(getBaseContext(), "Connection Failure", Toast.LENGTH_LONG).show();
+                finish();
+
+            }
         }
     }
 
