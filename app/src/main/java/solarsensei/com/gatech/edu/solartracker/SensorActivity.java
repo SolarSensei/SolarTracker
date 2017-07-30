@@ -116,7 +116,16 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         mRotation = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
 
+        mButton.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                checkBluetoothStatus();
+
+
+
+            }
+        });
 
 
     }
@@ -174,16 +183,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
         mSensorManager.registerListener(this, mRotation, SensorManager.SENSOR_DELAY_NORMAL);
 
-        mButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                checkBluetoothStatus();
-
-
-
-            }
-        });
     }
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -213,7 +213,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         super.onDestroy();
 
         // Don't forget to unregister the ACTION_FOUND receiver.
-        unregisterReceiver(mReceiver);
+
+        //Make sure device is registered first
+//        unregisterReceiver(mReceiver);
     }
 
 
@@ -222,14 +224,15 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // Unregisters the sensor when the activity pauses.
         super.onPause();
         mSensorManager.unregisterListener(this);
-        try
-        {
-            //Don't leave Bluetooth sockets open when leaving activity
-            btSocket.close();
-        } catch (IOException e2) {
-            //insert code to deal with this
-        }
+//        try
+//        {
+//            //Don't leave Bluetooth sockets open when leaving activity
+//            btSocket.close();
+//        } catch (IOException e2) {
+//            //insert code to deal with this
+//        }
     }
+
 
     private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
@@ -273,8 +276,14 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
             //I send a character when resuming.beginning transmission to check device is connected
             //If it is not an exception will be thrown in the write method and finish() will be called
-            mConnectedThread.write("x");
-            Toast.makeText(getBaseContext(), "Connected!", Toast.LENGTH_SHORT).show();
+            try {
+                mConnectedThread.write("x");
+                Toast.makeText(getBaseContext(), "Connected!", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+
+            }
+
+
 
         }
     };
@@ -422,7 +431,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             } catch (IOException e) {
                 //if you cannot write, close the application
                 Toast.makeText(getBaseContext(), "Connection Failure", Toast.LENGTH_LONG).show();
-                finish();
+
+              //  think about this
+                //finish();
 
             }
         }
@@ -431,7 +442,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage("Updating profile...");
+            mProgressDialog.setMessage("Connecting...");
             mProgressDialog.setIndeterminate(true);
         }
 
