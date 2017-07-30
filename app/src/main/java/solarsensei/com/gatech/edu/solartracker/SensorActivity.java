@@ -61,6 +61,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private TextView connectionStatus;
     private ListView pairedDevices;
     private TextView msg;
+    private TextView transmitView;
 
     private  AlertDialog dialog;
 
@@ -109,6 +110,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         pitchView = (TextView) findViewById(R.id.pitch);
         rollView = (TextView) findViewById(R.id.roll);
         mButton = (Button) findViewById(R.id.startPairing);
+        transmitView = (TextView) findViewById(R.id.transmitStatus);
 
 
         // Gets an instance of the sensor service, and uses that to get an instance of
@@ -495,6 +497,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         }
                     });
                 }
+                transmitView.setText("sending data...");
 
             } catch (IOException e) {
                 //if you cannot write, close the application
@@ -513,6 +516,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         toast.show();
                     }
                 });
+
+                transmitView.setText("");
 
               //  think about this
                 //finish();
@@ -578,23 +583,14 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                // Log.e(TAG, "Could not close the client socket", e);
             }
         }
-
-
-
-
-
-
-
-        //I send a character when resuming.beginning transmission to check device is connected
-        //If it is not an exception will be thrown in the write method and finish() will be called
-
-
     }
 
     private void manageMyConnectedSocket(BluetoothSocket btSocket) {
         //Toast.makeText(getBaseContext(), "connected!", Toast.LENGTH_LONG).show();
         mConnectedThread = new ConnectedThread(btSocket);
         mConnectedThread.start();
+        //I send a character when resuming.beginning transmission to check device is connected
+        //If it is not an exception will be thrown in the write method and finish() will be called
         try {
             mConnectedThread.write("x");
             //Toast.makeText(getBaseContext(), "connected!", Toast.LENGTH_LONG).show();

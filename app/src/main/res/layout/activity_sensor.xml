@@ -190,9 +190,17 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:id="@+id/transmitStatus"
+        android:text="sdhfjlj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp" />
+
     <Button
         android:id="@+id/startPairing"
-        android:layout_marginTop="40dp"
         android:layout_gravity="center"
         android:text="Start data transfer"
         android:layout_width="wrap_content"
