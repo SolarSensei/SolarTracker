@@ -10,10 +10,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -60,10 +62,16 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private ListView pairedDevices;
     private TextView msg;
 
+    private  AlertDialog dialog;
+
+    private ProgressDialog mProgressDialog;
+
     private SensorManager mSensorManager;
 
     private ArrayAdapter<String> mPairedDevicesArrayAdapter;
     private BluetoothAdapter mBtAdapter;
+
+    private boolean connected = false;
 
     //Environmental sensors
     private Sensor mPressure;
@@ -82,7 +90,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
     // SPP UUID service - this should work for most devices
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-    private ProgressDialog mProgressDialog;
+
 
     final int handlerState = 0;
     private BluetoothSocket btSocket = null;
@@ -145,7 +153,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 case Sensor.TYPE_PRESSURE:
                      mString = String.format(getString(R.string.displayResult), event.values[0], "mbars");
                     mPressureView.setText(mString);
-                    if (mConnectedThread != null) {
+                    if (connected) {
                         mConnectedThread.write("1" + mString);
                     }
 
@@ -153,7 +161,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 case Sensor.TYPE_AMBIENT_TEMPERATURE:
                     mString = String.format(getString(R.string.displayResult), event.values[0], "°C");
                     mTempView.setText(mString);
-                    if (mConnectedThread != null) {
+                    if (connected) {
                         mConnectedThread.write("2" + mString);
                     }
 
@@ -161,7 +169,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 case Sensor.TYPE_LIGHT:
                     mString = String.format(getString(R.string.displayResult), event.values[0], "°lx");
                     mLightView.setText(mString);
-                    if (mConnectedThread != null) {
+                    if (connected) {
                         mConnectedThread.write("3" + mString);
                     }
 
@@ -169,7 +177,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 case Sensor.TYPE_RELATIVE_HUMIDITY:
                     mString = String.format(getString(R.string.displayResult), event.values[0], "%");
                     mHumidityView.setText(mString);
-                    if (mConnectedThread != null) {
+                    if (connected) {
                         mConnectedThread.write("4" + mString);
                     }
 
@@ -177,7 +185,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 case Sensor.TYPE_MAGNETIC_FIELD:
                     mString = String.format(getString(R.string.displayResult), event.values[0], "μT");
                     mMagneticView.setText(mString);
-                    if (mConnectedThread != null) {
+                    if (connected) {
                         mConnectedThread.write("5" + mString);
                     }
 
@@ -191,7 +199,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     azimuthView.setText(mStringAzimuth);
                     pitchView.setText(mStringPitch);
                     rollView.setText(mStringRoll);
-                    if (mConnectedThread != null) {
+                    if (connected) {
                         mConnectedThread.write("6A" + mStringAzimuth + "P" + mStringPitch + "R" + mStringRoll);
                     }
 
@@ -271,55 +279,65 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
 
            // connectionStatus.setText("Connecting...");
-          //  showProgressDialog();
+            //showProgressDialog();
+
 
 
             // Get the device MAC address, which is the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
 
+            BluetoothDevice device = mBtAdapter.getRemoteDevice(address);
+           new bluetoothConnectTask(device, mProgressDialog).execute();
+
             // Make an intent to start next activity while taking an extra which is the MAC address.
 //            Intent i = new Intent(DeviceListActivity.this, MainActivity.class);
 //            i.putExtra(EXTRA_DEVICE_ADDRESS, address);
 //            startActivity(i);
 
-            BluetoothDevice device = mBtAdapter.getRemoteDevice(address);
-
-            try {
-                btSocket = createBluetoothSocket(device);
-            } catch (IOException e) {
-                Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_LONG).show();
-            }
-            // Establish the Bluetooth socket connection.
-            try
-            {
-                btSocket.connect();
-            } catch (IOException e) {
-                try
-                {
-                    btSocket.close();
-                } catch (IOException e2)
-                {
-                    //insert code to deal with this
-                }
-            }
-            mConnectedThread = new ConnectedThread(btSocket);
-            mConnectedThread.start();
-          //  hideProgressDialog();
-
-            //I send a character when resuming.beginning transmission to check device is connected
-            //If it is not an exception will be thrown in the write method and finish() will be called
-            try {
-                mConnectedThread.write("x");
-                Toast.makeText(getBaseContext(), "Connected!", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-
-            }
-
 
 
         }
     };
+
+    private  class bluetoothConnectTask extends AsyncTask<Void, Void, Void> {
+
+        private ProgressDialog mProgressDialog;
+        BluetoothDevice device;
+
+        bluetoothConnectTask(BluetoothDevice device, ProgressDialog mProgressDialog) {
+            this.device = device;
+            this.mProgressDialog = mProgressDialog;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            if (SensorActivity.this.mProgressDialog == null) {
+                SensorActivity.this.mProgressDialog = new ProgressDialog(SensorActivity.this);
+                SensorActivity.this.mProgressDialog.setMessage("Connecting...");
+                SensorActivity.this.mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            }
+
+            SensorActivity.this.mProgressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            // do tracks loading process here, don't update UI directly here because there is different mechanism for it
+            ConnectThread connect = new ConnectThread(device);
+            connect.run();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+
+            // write display tracks logic here
+            SensorActivity.this.mProgressDialog.dismiss();  // dismiss dialog
+        }
+    }
 
     private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
 
@@ -376,7 +394,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             }
         });
 
-        final AlertDialog dialog = alert.create();
+        dialog = alert.create();
         dialog.show();
 
         final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
@@ -444,6 +462,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private class ConnectedThread extends Thread {
         private final OutputStream mmOutStream;
 
+
         //creation of the connect thread
         public ConnectedThread(BluetoothSocket socket) {
             OutputStream tmpOut = null;
@@ -460,31 +479,127 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         public void write(String input) {
             byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
             try {
+                System.out.println(input);
                 mmOutStream.write(msgBuffer);                //write bytes over BT connection via outstream
+                if (!connected) {
+                    connected = true;
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast toast =  Toast.makeText(dialog.getContext(), "Connected!",
+                                    Toast.LENGTH_LONG);
+                            TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            v.setTextColor(Color.GREEN);
+                            dialog.dismiss();
+                            toast.show();
+                        }
+                    });
+                }
+
             } catch (IOException e) {
                 //if you cannot write, close the application
-                Toast.makeText(getBaseContext(), "Connection Failure", Toast.LENGTH_LONG).show();
+                //Toast toast = Toast.makeText(getBaseContext(), "Connection Failure", Toast.LENGTH_SHORT).show();
+                connected = false;
+                System.out.println("connected: " + connected);
+
+
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast toast =  Toast.makeText(dialog.getContext(), "Connection Failure ",
+                                Toast.LENGTH_LONG);
+                        TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        v.setTextColor(Color.RED);
+                        toast.show();
+                    }
+                });
 
               //  think about this
                 //finish();
-
             }
         }
     }
 
-    private void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage("Connecting...");
-            mProgressDialog.setIndeterminate(true);
+
+    private class ConnectThread extends Thread {
+        private final BluetoothSocket mmSocket;
+        private final BluetoothDevice mmDevice;
+
+        public ConnectThread(BluetoothDevice device) {
+            // Use a temporary object that is later assigned to mmSocket
+            // because mmSocket is final.
+            BluetoothSocket tmp = null;
+            mmDevice = device;
+
+            try {
+                // Get a BluetoothSocket to connect with the given BluetoothDevice.
+                // MY_UUID is the app's UUID string, also used in the server code.
+                tmp = device.createRfcommSocketToServiceRecord(BTMODULEUUID);
+            } catch (IOException e) {
+                Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_LONG).show();
+            }
+            mmSocket = tmp;
         }
 
-        mProgressDialog.show();
+        public void run() {
+            // Cancel discovery because it otherwise slows down the connection.
+            mBtAdapter.cancelDiscovery();
+
+            try {
+                // Connect to the remote device through the socket. This call blocks
+                // until it succeeds or throws an exception.
+                mmSocket.connect();
+            } catch (IOException connectException) {
+                // Unable to connect; close the socket and return.
+
+                try {
+                    mmSocket.close();
+
+                } catch (IOException closeException) {
+                    Toast.makeText(getBaseContext(), "could not close socket", Toast.LENGTH_LONG).show();
+                }
+               // return;
+            }
+
+            // The connection attempt succeeded. Perform work associated with
+            // the connection in a separate thread.
+
+            mProgressDialog.dismiss();
+//
+            manageMyConnectedSocket(mmSocket);
+
+        }
+
+        // Closes the client socket and causes the thread to finish.
+        public void cancel() {
+            try {
+                mmSocket.close();
+            } catch (IOException e) {
+               // Log.e(TAG, "Could not close the client socket", e);
+            }
+        }
+
+
+
+
+
+
+
+        //I send a character when resuming.beginning transmission to check device is connected
+        //If it is not an exception will be thrown in the write method and finish() will be called
+
+
     }
 
-    private void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.hide();
+    private void manageMyConnectedSocket(BluetoothSocket btSocket) {
+        //Toast.makeText(getBaseContext(), "connected!", Toast.LENGTH_LONG).show();
+        mConnectedThread = new ConnectedThread(btSocket);
+        mConnectedThread.start();
+        try {
+            mConnectedThread.write("x");
+            //Toast.makeText(getBaseContext(), "connected!", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+
         }
     }
 
