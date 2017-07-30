@@ -139,29 +139,64 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     @Override
     public final void onSensorChanged(SensorEvent event) {
         // Reads in sensor data.
+        String mString;
         try {
             switch (event.sensor.getType()) {
                 case Sensor.TYPE_PRESSURE:
-                    mPressureView.setText(String.format(getString(R.string.displayResult), event.values[0], "mbars"));
+                     mString = String.format(getString(R.string.displayResult), event.values[0], "mbars");
+                    mPressureView.setText(mString);
+                    if (mConnectedThread != null) {
+                        mConnectedThread.write("1" + mString);
+                    }
+
                     break;
                 case Sensor.TYPE_AMBIENT_TEMPERATURE:
-                    mTempView.setText(String.format(getString(R.string.displayResult), event.values[0], "°C"));
+                    mString = String.format(getString(R.string.displayResult), event.values[0], "°C");
+                    mTempView.setText(mString);
+                    if (mConnectedThread != null) {
+                        mConnectedThread.write("2" + mString);
+                    }
+
                     break;
                 case Sensor.TYPE_LIGHT:
-                    mLightView.setText(String.format(getString(R.string.displayResult), event.values[0], "°lx"));
+                    mString = String.format(getString(R.string.displayResult), event.values[0], "°lx");
+                    mLightView.setText(mString);
+                    if (mConnectedThread != null) {
+                        mConnectedThread.write("3" + mString);
+                    }
+
                     break;
                 case Sensor.TYPE_RELATIVE_HUMIDITY:
-                    mHumidityView.setText(String.format(getString(R.string.displayResult), event.values[0], "%"));
+                    mString = String.format(getString(R.string.displayResult), event.values[0], "%");
+                    mHumidityView.setText(mString);
+                    if (mConnectedThread != null) {
+                        mConnectedThread.write("4" + mString);
+                    }
+
                     break;
                 case Sensor.TYPE_MAGNETIC_FIELD:
-                    mMagneticView.setText(String.format(getString(R.string.displayResult), event.values[0], "μT"));
+                    mString = String.format(getString(R.string.displayResult), event.values[0], "μT");
+                    mMagneticView.setText(mString);
+                    if (mConnectedThread != null) {
+                        mConnectedThread.write("5" + mString);
+                    }
+
                     break;
                 case Sensor.TYPE_ROTATION_VECTOR:
                     SensorManager.getRotationMatrixFromVector(mRotationMatrix, event.values);
                     SensorManager.getOrientation(mRotationMatrix, mOrientationValues);
-                    azimuthView.setText(String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[0]), "°"));
-                    pitchView.setText(String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[1]), "°"));
-                    rollView.setText(String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[2]), "°"));
+                    String mStringAzimuth = String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[0]), "°");
+                    String mStringPitch = String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[1]), "°");
+                    String mStringRoll = String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[2]), "°");
+                    azimuthView.setText(mStringAzimuth);
+                    pitchView.setText(mStringPitch);
+                    rollView.setText(mStringRoll);
+                    if (mConnectedThread != null) {
+                        mConnectedThread.write("6" + mStringAzimuth);
+                        mConnectedThread.write("7" + mStringPitch);
+                        mConnectedThread.write("8" + mStringRoll);
+                    }
+
                     break;
                 default:
                     break;
@@ -238,7 +273,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
 
            // connectionStatus.setText("Connecting...");
-            showProgressDialog();
+          //  showProgressDialog();
 
 
             // Get the device MAC address, which is the last 17 chars in the View
@@ -272,7 +307,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             }
             mConnectedThread = new ConnectedThread(btSocket);
             mConnectedThread.start();
-            hideProgressDialog();
+          //  hideProgressDialog();
 
             //I send a character when resuming.beginning transmission to check device is connected
             //If it is not an exception will be thrown in the write method and finish() will be called
