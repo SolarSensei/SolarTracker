@@ -192,9 +192,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     pitchView.setText(mStringPitch);
                     rollView.setText(mStringRoll);
                     if (mConnectedThread != null) {
-                        mConnectedThread.write("6" + mStringAzimuth);
-                        mConnectedThread.write("7" + mStringPitch);
-                        mConnectedThread.write("8" + mStringRoll);
+                        mConnectedThread.write("6A" + mStringAzimuth + "P" + mStringPitch + "R" + mStringRoll);
                     }
 
                     break;
