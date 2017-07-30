@@ -96,6 +96,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     final int handlerState = 0;
     private BluetoothSocket btSocket = null;
 
+    private String deviceAdress;
+
     @Override
     public final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -226,6 +228,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
         mSensorManager.registerListener(this, mRotation, SensorManager.SENSOR_DELAY_NORMAL);
 
+        if (mConnectedThread != null) {
+            BluetoothDevice device = mBtAdapter.getRemoteDevice(deviceAdress);
+            ConnectThread connect = new ConnectThread(device);
+            connect.run();
+        }
+
+
 
     }
 
@@ -288,6 +297,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             // Get the device MAC address, which is the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
+            deviceAdress = address;
 
             BluetoothDevice device = mBtAdapter.getRemoteDevice(address);
            new bluetoothConnectTask(device, mProgressDialog).execute();
@@ -407,24 +417,24 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         msg = (TextView)dialog.findViewById(R.id.title_paired_devices);
 
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                mPairedDevicesArrayAdapter.clear();
-                mBtAdapter.startDiscovery();
-                IntentFilter filter = new IntentFilter();
-
-                filter.addAction(BluetoothDevice.ACTION_FOUND);
-                filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
-                filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-
-                registerReceiver(mReceiver, filter);
-
-
-            }
-        });
+//        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                mPairedDevicesArrayAdapter.clear();
+//                mBtAdapter.startDiscovery();
+//                IntentFilter filter = new IntentFilter();
+//
+//                filter.addAction(BluetoothDevice.ACTION_FOUND);
+//                filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+//                filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+//
+//                registerReceiver(mReceiver, filter);
+//
+//
+//            }
+//        });
 
         connectionStatus = (TextView) dialog.findViewById(R.id.connecting);
         connectionStatus.setText(" ");
@@ -463,10 +473,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     //create new class for connect thread
     private class ConnectedThread extends Thread {
         private final OutputStream mmOutStream;
+        private final BluetoothSocket mSocket;
 
 
         //creation of the connect thread
         public ConnectedThread(BluetoothSocket socket) {
+            this.mSocket = socket;
+
             OutputStream tmpOut = null;
 
             try {
@@ -523,6 +536,15 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 //finish();
             }
         }
+
+        public void cancel() {
+            try {
+                mSocket.close();
+            } catch (IOException e) {
+                //Log.e(TAG, "Could not close the connect socket", e);
+            }
+        }
+
     }
 
 
