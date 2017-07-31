@@ -188,7 +188,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                      mString = String.format(getString(R.string.displayResult), event.values[0], "mbars");
                     mPressureView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("1" + mString);
+                        mConnectedThread.write("B" + mString + "D");
                     }
 
                     break;
@@ -196,7 +196,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "°C");
                     mTempView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("2" + mString);
+                        mConnectedThread.write("E" + mString + "F");
                     }
 
                     break;
@@ -204,7 +204,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "°lx");
                     mLightView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("3" + mString);
+                        mConnectedThread.write("G" + mString + "H");
                     }
 
                     break;
@@ -212,7 +212,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "%");
                     mHumidityView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("4" + mString);
+                        mConnectedThread.write("I" + mString + "J");
                     }
 
                     break;
@@ -220,7 +220,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "μT");
                     mMagneticView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("5" + mString);
+                        mConnectedThread.write("K" + mString + "L");
                     }
 
                     break;
@@ -234,7 +234,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     pitchView.setText(mStringPitch);
                     rollView.setText(mStringRoll);
                     if (connected) {
-                        mConnectedThread.write("6A" + mStringAzimuth + "P" + mStringPitch + "R" + mStringRoll);
+                        mConnectedThread.write("A" + mStringAzimuth + "P" + mStringPitch + "R" + mStringRoll);
                     }
 
                     break;
@@ -526,14 +526,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         public void write(final String input) {
             byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
             try {
-                System.out.println(input);
                 mmOutStream.write(msgBuffer);                //write bytes over BT connection via outstream
                 if (!connected) {
                     connected = true;
                     runOnUiThread(new Runnable() {
                         public void run() {
                             Toast toast =  Toast.makeText(dialog.getContext(), "Connected!",
-                                    Toast.LENGTH_LONG);
+                                    Toast.LENGTH_SHORT);
                             TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             v.setTextColor(Color.GREEN);
@@ -548,13 +547,12 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 //if you cannot write, close the application
                 //Toast toast = Toast.makeText(getBaseContext(), "Connection Failure", Toast.LENGTH_SHORT).show();
                 connected = false;
-                System.out.println("connected: " + connected);
 
                 dialog.dismiss();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        Toast toast =  Toast.makeText(dialog.getContext(), "Couldn't send " + input + " to the other device ",
-                                Toast.LENGTH_LONG);
+                        Toast toast =  Toast.makeText(getBaseContext(), "Couldn't send " + input + " to the other device ",
+                                Toast.LENGTH_SHORT);
                         TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         v.setTextColor(Color.RED);
@@ -595,7 +593,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 // MY_UUID is the app's UUID string, also used in the server code.
                 tmp = device.createRfcommSocketToServiceRecord(BTMODULEUUID);
             } catch (IOException e) {
-                Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_SHORT).show();
             }
             mmSocket = tmp;
         }
@@ -616,7 +614,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     runOnUiThread(new Runnable() {
                         public void run() {
                             Toast toast =  Toast.makeText(dialog.getContext(), "No connection UUID match found!",
-                                    Toast.LENGTH_LONG);
+                                    Toast.LENGTH_SHORT);
                             TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             v.setTextColor(Color.RED);
@@ -625,7 +623,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     });
 
                 } catch (IOException closeException) {
-                    Toast.makeText(getBaseContext(), "could not close socket", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "could not close socket", Toast.LENGTH_SHORT).show();
                 }
                 return;
             }
