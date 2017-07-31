@@ -18,9 +18,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml" />
     </list>
     <ignored path="solarTracker.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,10 +60,12 @@
       <file leaf-file-name="SensorActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="233" column="26" selection-start-line="233" selection-start-column="26" selection-end-line="233" selection-end-column="26" />
+            <state relative-caret-position="174">
+              <caret line="270" column="35" selection-start-line="270" selection-start-column="27" selection-end-line="270" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#16415#16856#0" expanded="true" />
+                <element signature="e#16855#16856#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -87,8 +90,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="355">
+              <caret line="203" column="39" selection-start-line="203" selection-start-column="39" selection-end-line="203" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -100,7 +103,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="130">
               <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
               <folding />
             </state>
@@ -1955,8 +1958,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_devices.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_dialogue.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java" />
       </list>
     </option>
@@ -1991,7 +1994,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="AndroidView">
+        <subPane />
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2212,11 +2219,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView">
-        <subPane />
-      </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2575,6 +2578,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7238562" sideWeight="0.503231" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49084857" sideWeight="0.49676898" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294509" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327787" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2594,7 +2598,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -2620,6 +2623,8 @@
           <caret line="107" column="101" selection-start-line="107" selection-start-column="101" selection-end-line="107" selection-end-column="101" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#16415#16856#0" expanded="true" />
+            <element signature="e#16855#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2656,6 +2661,8 @@
           <caret line="44" column="40" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#16415#16856#0" expanded="true" />
+            <element signature="e#16855#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2666,6 +2673,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#16415#16856#0" expanded="true" />
+            <element signature="e#16855#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2676,6 +2685,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#16415#16856#0" expanded="true" />
+            <element signature="e#16855#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2686,6 +2697,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#16415#16856#0" expanded="true" />
+            <element signature="e#16855#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2696,6 +2709,8 @@
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#16415#16856#0" expanded="true" />
+            <element signature="e#16855#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2746,6 +2761,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#16415#16856#0" expanded="true" />
+            <element signature="e#16855#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2796,6 +2813,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#16415#16856#0" expanded="true" />
+            <element signature="e#16855#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2846,6 +2865,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#16415#16856#0" expanded="true" />
+            <element signature="e#16855#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2896,6 +2917,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#16415#16856#0" expanded="true" />
+            <element signature="e#16855#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2999,17 +3022,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dialogue.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_devices.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3021,23 +3033,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dialogue.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="355">
+          <caret line="203" column="39" selection-start-line="203" selection-start-column="39" selection-end-line="203" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="233" column="26" selection-start-line="233" selection-start-column="26" selection-end-line="233" selection-end-column="26" />
+        <state relative-caret-position="174">
+          <caret line="270" column="35" selection-start-line="270" selection-start-column="27" selection-end-line="270" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#16415#16856#0" expanded="true" />
+            <element signature="e#16855#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>

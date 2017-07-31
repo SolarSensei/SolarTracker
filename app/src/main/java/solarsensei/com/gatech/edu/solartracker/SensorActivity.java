@@ -86,6 +86,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
     //constants
     private final static int REQUEST_ENABLE_BT = 1;
+    private final static int REQUEST_DISCOVER_BT = 2;
+
+
+    private final String startTransfer = "START DATA TRANSFER";
+    private final String stopTransfer = "STOP DATA TRANSFER";
 
     private ConnectedThread mConnectedThread;
 
@@ -114,6 +119,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         mButton = (Button) findViewById(R.id.startPairing);
         transmitView = (TextView) findViewById(R.id.transmitStatus);
 
+        mButton.setText(startTransfer);
 
         // Gets an instance of the sensor service, and uses that to get an instance of
         // a particular sensor.
@@ -128,11 +134,35 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         mRotation = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
 
+        IntentFilter filter = new IntentFilter();
+
+        filter.addAction(BluetoothDevice.ACTION_FOUND);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+
+        registerReceiver(mReceiver, filter);
+
+
         mButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                checkBluetoothStatus();
+                if (mButton.getText().equals(startTransfer)) {
+                    try {
+                        checkBluetoothStatus();
+                        mButton.setText(startTransfer);
+                    } catch (Exception e) {
+
+                    }
+
+                } else {
+                    try {
+                        btSocket.close();
+                        mButton.setText(startTransfer);
+                    } catch (IOException e) {
+                        //
+                    }
+                }
 
 
 
@@ -268,6 +298,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         //Make sure device is registered first
 //        unregisterReceiver(mReceiver);
+        try {
+            btSocket.close();
+        } catch (IOException e) {
+
+        }
     }
 
 
@@ -276,13 +311,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // Unregisters the sensor when the activity pauses.
         super.onPause();
         mSensorManager.unregisterListener(this);
-//        try
-//        {
-//            //Don't leave Bluetooth sockets open when leaving activity
-//            btSocket.close();
-//        } catch (IOException e2) {
-//            //insert code to deal with this
-//        }
     }
 
 
@@ -387,6 +415,15 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             }
         }
 
+        if (requestCode == REQUEST_DISCOVER_BT) {
+            if (requestCode != 0) {
+                //bluetooth discoverable
+                mPairedDevicesArrayAdapter.clear();
+                mBtAdapter.startDiscovery();
+
+            }
+        }
+
 
     }
 
@@ -417,24 +454,19 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         msg = (TextView)dialog.findViewById(R.id.title_paired_devices);
 
-//        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                mPairedDevicesArrayAdapter.clear();
-//                mBtAdapter.startDiscovery();
-//                IntentFilter filter = new IntentFilter();
-//
-//                filter.addAction(BluetoothDevice.ACTION_FOUND);
-//                filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
-//                filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-//
-//                registerReceiver(mReceiver, filter);
-//
-//
-//            }
-//        });
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+                Intent discoverableIntent =
+                        new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+                discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+                startActivityForResult(discoverableIntent, REQUEST_DISCOVER_BT);
+
+            }
+        });
 
         connectionStatus = (TextView) dialog.findViewById(R.id.connecting);
         connectionStatus.setText(" ");
@@ -491,7 +523,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         }
 
         //write method
-        public void write(String input) {
+        public void write(final String input) {
             byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
             try {
                 System.out.println(input);
@@ -518,10 +550,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 connected = false;
                 System.out.println("connected: " + connected);
 
-
+                dialog.dismiss();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        Toast toast =  Toast.makeText(dialog.getContext(), "Connection Failure ",
+                        Toast toast =  Toast.makeText(dialog.getContext(), "Couldn't send " + input + " to the other device ",
                                 Toast.LENGTH_LONG);
                         TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
                         toast.setGravity(Gravity.CENTER, 0, 0);
@@ -581,11 +613,21 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
                 try {
                     mmSocket.close();
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast toast =  Toast.makeText(dialog.getContext(), "No connection UUID match found!",
+                                    Toast.LENGTH_LONG);
+                            TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            v.setTextColor(Color.RED);
+                            toast.show();
+                        }
+                    });
 
                 } catch (IOException closeException) {
                     Toast.makeText(getBaseContext(), "could not close socket", Toast.LENGTH_LONG).show();
                 }
-               // return;
+                return;
             }
 
             // The connection attempt succeeded. Perform work associated with
