@@ -311,6 +311,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // Unregisters the sensor when the activity pauses.
         super.onPause();
         mSensorManager.unregisterListener(this);
+        try {
+            btSocket.close();
+        } catch (IOException e) {
+
+        }
     }
 
 
