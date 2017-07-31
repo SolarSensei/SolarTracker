@@ -1,6 +1,4 @@
 package solarsensei.com.gatech.edu.solartracker;
-
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -17,19 +15,13 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -59,7 +51,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private float[] mRotationMatrix = new float[9];
     private float[] mOrientationValues = new float[3];
     private TextView connectionStatus;
-    private ListView pairedDevices;
     private TextView msg;
     private TextView transmitView;
 
@@ -183,12 +174,55 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // Reads in sensor data.
         String mString;
         try {
+//            case Sensor.TYPE_PRESSURE:
+//                mString = String.format(getString(R.string.displayResult), event.values[0], "mbars");
+//                mPressureView.setText(mString);
+//                if (connected) {
+//                    mConnectedThread.write("B" + mString + "D");
+//                }
+//
+//                break;
+//            case Sensor.TYPE_AMBIENT_TEMPERATURE:
+//                mString = String.format(getString(R.string.displayResult), event.values[0], "°C");
+//                mTempView.setText(mString);
+//                if (connected) {
+//                    mConnectedThread.write("E" + mString + "F");
+//                }
+//
+//                break;
+//            case Sensor.TYPE_LIGHT:
+//                mString = String.format(getString(R.string.displayResult), event.values[0], "°lx");
+//                mLightView.setText(mString);
+//                if (connected) {
+//                    mConnectedThread.write("G" + mString + "H");
+//                }
+//
+//                break;
+//            case Sensor.TYPE_RELATIVE_HUMIDITY:
+//                mString = String.format(getString(R.string.displayResult), event.values[0], "%");
+//                mHumidityView.setText(mString);
+//                if (connected) {
+//                    mConnectedThread.write("I" + mString + "J");
+//                }
+//
+//                break;
+//            case Sensor.TYPE_MAGNETIC_FIELD:
+//                mString = String.format(getString(R.string.displayResult), event.values[0], "μT");
+//                mMagneticView.setText(mString);
+//                if (connected) {
+//                    mConnectedThread.write("K" + mString + "L");
+//                }
+//
+//                break;
+
+
+
             switch (event.sensor.getType()) {
                 case Sensor.TYPE_PRESSURE:
                      mString = String.format(getString(R.string.displayResult), event.values[0], "mbars");
                     mPressureView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("B" + mString + "D");
+                        mConnectedThread.write("1" + mString);
                     }
 
                     break;
@@ -196,7 +230,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "°C");
                     mTempView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("E" + mString + "F");
+                        mConnectedThread.write("2" + mString);
                     }
 
                     break;
@@ -204,7 +238,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "°lx");
                     mLightView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("G" + mString + "H");
+                        mConnectedThread.write("3" + mString);
                     }
 
                     break;
@@ -212,7 +246,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "%");
                     mHumidityView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("I" + mString + "J");
+                        mConnectedThread.write("4" + mString);
                     }
 
                     break;
@@ -220,7 +254,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "μT");
                     mMagneticView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("K" + mString + "L");
+                        mConnectedThread.write("5" + mString);
                     }
 
                     break;
@@ -234,7 +268,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     pitchView.setText(mStringPitch);
                     rollView.setText(mStringRoll);
                     if (connected) {
-                        mConnectedThread.write("A" + mStringAzimuth + "P" + mStringPitch + "R" + mStringRoll);
+                        mConnectedThread.write("6A" + mStringAzimuth + "P" + mStringPitch + "R" + mStringRoll);
                     }
 
                     break;
@@ -297,9 +331,12 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // Don't forget to unregister the ACTION_FOUND receiver.
 
         //Make sure device is registered first
-//        unregisterReceiver(mReceiver);
+        unregisterReceiver(mReceiver);
         try {
-            btSocket.close();
+            if (btSocket != null) {
+                btSocket.close();
+            }
+
         } catch (IOException e) {
 
         }
@@ -311,11 +348,14 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // Unregisters the sensor when the activity pauses.
         super.onPause();
         mSensorManager.unregisterListener(this);
-        try {
-            btSocket.close();
-        } catch (IOException e) {
-
-        }
+//        try {
+//            if (btSocket != null) {
+//                btSocket.close();
+//            }
+//
+//        } catch (IOException e) {
+//
+//        }
     }
 
 
@@ -421,7 +461,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         }
 
         if (requestCode == REQUEST_DISCOVER_BT) {
-            if (requestCode != 0) {
+            if (resultCode != 0) {
                 //bluetooth discoverable
                 mPairedDevicesArrayAdapter.clear();
                 mBtAdapter.startDiscovery();
@@ -546,7 +586,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         }
                     });
                 }
-                transmitView.setText("sending data...");
+
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        transmitView.setText("sending data...");
+                    }
+                });
+
 
             } catch (IOException e) {
                 //if you cannot write, close the application
