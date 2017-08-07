@@ -13,13 +13,21 @@
         android:icon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SensorActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".SensorActivity"
+            android:label="SensorActivity" />
+
+        <activity
+            android:name=".ManualActivity"
+            android:label="ManualActivity" />
     </application>
 
 </manifest>

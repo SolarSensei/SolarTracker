@@ -10,6 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b4e68a7-d8b0-4dda-a907-61c11b8d988f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/MainActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/ManualActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_manual.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/solarTracker.iml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
@@ -17,8 +22,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="solarTracker.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,40 +62,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SensorActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SensorActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="459" column="25" selection-start-line="459" selection-start-column="19" selection-end-line="459" selection-end-column="25" />
+            <state relative-caret-position="405">
+              <caret line="136" column="35" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4997#5640#0" expanded="true" />
-                <element signature="e#5639#5640#0" expanded="true" />
-                <element signature="e#7839#7872#0" expanded="true" />
-                <element signature="e#8201#8234#0" expanded="true" />
-                <element signature="e#8542#8575#0" expanded="true" />
-                <element signature="e#8897#8930#0" expanded="true" />
-                <element signature="e#9250#9283#0" expanded="true" />
-                <element signature="e#9800#9833#0" expanded="true" />
-                <element signature="e#9936#9969#0" expanded="true" />
-                <element signature="e#10071#10104#0" expanded="true" />
-                <element signature="e#11617#12651#0" expanded="true" />
-                <element signature="e#12650#12651#0" expanded="true" />
-                <element signature="e#13447#14350#0" expanded="true" />
-                <element signature="e#14349#14350#0" expanded="true" />
-                <element signature="e#17680#17847#0" expanded="true" />
-                <element signature="e#17846#17847#0" expanded="true" />
-                <element signature="e#18360#18801#0" expanded="true" />
-                <element signature="e#18800#18801#0" expanded="true" />
-                <element signature="e#20141#20185#0" expanded="true" />
-                <element signature="e#21355#21930#0" expanded="true" />
-                <element signature="e#21929#21930#0" expanded="true" />
-                <element signature="e#21982#22143#0" expanded="true" />
-                <element signature="e#22142#22143#0" expanded="true" />
-                <element signature="e#22462#22988#0" expanded="true" />
-                <element signature="e#22987#22988#0" expanded="true" />
-                <element signature="e#24758#25306#0" expanded="true" />
-                <element signature="e#25305#25306#0" expanded="true" />
+                <element signature="e#4740#5383#0" expanded="true" />
+                <element signature="e#5382#5383#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,40 +78,115 @@
       </file>
       <file leaf-file-name="activity_devices.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_devices.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
               <folding />
             </state>
           </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="activity_sensor.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2925">
-              <caret line="195" column="40" selection-start-line="195" selection-start-column="40" selection-end-line="195" selection-end-column="40" />
+            <state relative-caret-position="30">
+              <caret line="2" column="57" selection-start-line="2" selection-start-column="57" selection-end-line="2" selection-end-column="69" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_manual.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="29" column="90" selection-start-line="29" selection-start-column="90" selection-end-line="29" selection-end-column="90" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#780#1068#0" expanded="true" />
+                <element signature="e#1067#1068#0" expanded="true" />
+                <element signature="e#1110#1398#0" expanded="true" />
+                <element signature="e#1397#1398#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManualActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/ManualActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#990#1265#0" expanded="true" />
+                <element signature="e#1264#1265#0" expanded="true" />
+                <element signature="e#1307#1540#0" expanded="true" />
+                <element signature="e#1539#1540#0" expanded="true" />
+                <element signature="e#1580#1812#0" expanded="true" />
+                <element signature="e#1811#1812#0" expanded="true" />
+                <element signature="e#1850#2165#0" expanded="true" />
+                <element signature="e#2164#2165#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="activity_dialogue.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dialogue.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
               <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
@@ -138,6 +196,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile_vertical" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -160,14 +219,14 @@
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="solarTracker" />
+              <option name="name" value="bluetoothClient-dataWriter" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="solarTracker" />
+                <option name="name" value="bluetoothClient-dataWriter" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
               <ExternalProjectPojo>
@@ -185,7 +244,7 @@
           <value>
             <list>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the sub-projects of root project 'solarTracker'." />
+                <option name="description" value="Displays the sub-projects of root project 'bluetoothClient-dataWriter'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="projects" />
               </ExternalTaskPojo>
@@ -224,7 +283,7 @@
                 <option name="name" value="assembleDebugUnitTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the configuration model of root project 'solarTracker'. [incubating]" />
+                <option name="description" value="Displays the configuration model of root project 'bluetoothClient-dataWriter'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="model" />
               </ExternalTaskPojo>
@@ -239,7 +298,7 @@
                 <option name="name" value="prepareComAndroidSupportAppcompatV72531Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the tasks runnable from root project 'solarTracker' (some of the displayed tasks may belong to subprojects)." />
+                <option name="description" value="Displays the tasks runnable from root project 'bluetoothClient-dataWriter' (some of the displayed tasks may belong to subprojects)." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="tasks" />
               </ExternalTaskPojo>
@@ -272,7 +331,7 @@
                 <option name="name" value="deviceCheck" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all dependencies declared in root project 'solarTracker'." />
+                <option name="description" value="Displays all dependencies declared in root project 'bluetoothClient-dataWriter'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencies" />
               </ExternalTaskPojo>
@@ -337,7 +396,7 @@
                 <option name="name" value="compileDebugAndroidTestJavaWithJavac" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the components produced by root project 'solarTracker'. [incubating]" />
+                <option name="description" value="Displays the components produced by root project 'bluetoothClient-dataWriter'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="components" />
               </ExternalTaskPojo>
@@ -470,7 +529,7 @@
                 <option name="name" value="uninstallDebugAndroidTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the insight into a specific dependency in root project 'solarTracker'." />
+                <option name="description" value="Displays the insight into a specific dependency in root project 'bluetoothClient-dataWriter'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencyInsight" />
               </ExternalTaskPojo>
@@ -776,12 +835,12 @@
                 <option name="name" value="generateDebugAssets" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the dependent components of components in root project 'solarTracker'. [incubating]" />
+                <option name="description" value="Displays the dependent components of components in root project 'bluetoothClient-dataWriter'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependentComponents" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all buildscript dependencies declared in root project 'solarTracker'." />
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'bluetoothClient-dataWriter'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="buildEnvironment" />
               </ExternalTaskPojo>
@@ -898,7 +957,7 @@
                 <option name="name" value="generateReleaseResValues" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the properties of root project 'solarTracker'." />
+                <option name="description" value="Displays the properties of root project 'bluetoothClient-dataWriter'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="properties" />
               </ExternalTaskPojo>
@@ -1624,7 +1683,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4489189494000" />
+        <entry key="$PROJECT_DIR$" value="4505269101000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1820,7 +1879,7 @@
                   </entry>
                 </map>
               </option>
-              <option name="name" value="solarTracker" />
+              <option name="name" value="bluetoothClient-dataWriter" />
               <option name="projectBuildClasspath">
                 <list>
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-3.3-all/55gk2rcmfc6p2dg9u9ohc3hw9/gradle-3.3/src/announce" />
@@ -1974,20 +2033,24 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_devices.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_dialogue.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_manual.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/ManualActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="34" />
+    <option name="y" value="32" />
     <option name="width" value="1280" />
     <option name="height" value="717" />
   </component>
@@ -2016,36 +2079,32 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="AndroidView">
-        <subPane />
-      </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2055,29 +2114,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2088,18 +2129,14 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2114,22 +2151,14 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2151,11 +2180,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2181,41 +2210,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solarTracker" />
+              <option name="myItemId" value="bluetoothClient-dataWriter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2241,7 +2240,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane />
+      </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2251,7 +2254,7 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Solar-Tracker" />
-    <property name="device.picker.selection" value="FA48JSF00451" />
+    <property name="device.picker.selection" value="Nexus_5X_API_26" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -2590,7 +2593,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="34" width="1280" height="717" extended-state="0" />
+    <frame x="0" y="32" width="1280" height="717" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2600,6 +2603,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7238562" sideWeight="0.503231" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49084857" sideWeight="0.49676898" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294509" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327787" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2619,7 +2623,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -2641,100 +2644,12 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1605">
-          <caret line="107" column="101" selection-start-line="107" selection-start-column="101" selection-end-line="107" selection-end-column="101" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4997#5640#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
-            <element signature="e#7839#7872#0" expanded="true" />
-            <element signature="e#8201#8234#0" expanded="true" />
-            <element signature="e#8542#8575#0" expanded="true" />
-            <element signature="e#8897#8930#0" expanded="true" />
-            <element signature="e#9250#9283#0" expanded="true" />
-            <element signature="e#9800#9833#0" expanded="true" />
-            <element signature="e#9936#9969#0" expanded="true" />
-            <element signature="e#10071#10104#0" expanded="true" />
-            <element signature="e#11617#12651#0" expanded="true" />
-            <element signature="e#12650#12651#0" expanded="true" />
-            <element signature="e#13447#14350#0" expanded="true" />
-            <element signature="e#14349#14350#0" expanded="true" />
-            <element signature="e#17680#17847#0" expanded="true" />
-            <element signature="e#17846#17847#0" expanded="true" />
-            <element signature="e#18360#18801#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#20141#20185#0" expanded="true" />
-            <element signature="e#21355#21930#0" expanded="true" />
-            <element signature="e#21929#21930#0" expanded="true" />
-            <element signature="e#21982#22143#0" expanded="true" />
-            <element signature="e#22142#22143#0" expanded="true" />
-            <element signature="e#22462#22988#0" expanded="true" />
-            <element signature="e#22987#22988#0" expanded="true" />
-            <element signature="e#24758#25306#0" expanded="true" />
-            <element signature="e#25305#25306#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6630">
-          <caret line="442" column="34" selection-start-line="442" selection-start-column="34" selection-end-line="442" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1710">
-          <caret line="114" column="17" selection-start-line="114" selection-start-column="17" selection-end-line="114" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
           <caret line="44" column="40" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4997#5640#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
-            <element signature="e#7839#7872#0" expanded="true" />
-            <element signature="e#8201#8234#0" expanded="true" />
-            <element signature="e#8542#8575#0" expanded="true" />
-            <element signature="e#8897#8930#0" expanded="true" />
-            <element signature="e#9250#9283#0" expanded="true" />
-            <element signature="e#9800#9833#0" expanded="true" />
-            <element signature="e#9936#9969#0" expanded="true" />
-            <element signature="e#10071#10104#0" expanded="true" />
-            <element signature="e#11617#12651#0" expanded="true" />
-            <element signature="e#12650#12651#0" expanded="true" />
-            <element signature="e#13447#14350#0" expanded="true" />
-            <element signature="e#14349#14350#0" expanded="true" />
-            <element signature="e#17680#17847#0" expanded="true" />
-            <element signature="e#17846#17847#0" expanded="true" />
-            <element signature="e#18360#18801#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#20141#20185#0" expanded="true" />
-            <element signature="e#21355#21930#0" expanded="true" />
-            <element signature="e#21929#21930#0" expanded="true" />
-            <element signature="e#21982#22143#0" expanded="true" />
-            <element signature="e#22142#22143#0" expanded="true" />
-            <element signature="e#22462#22988#0" expanded="true" />
-            <element signature="e#22987#22988#0" expanded="true" />
-            <element signature="e#24758#25306#0" expanded="true" />
-            <element signature="e#25305#25306#0" expanded="true" />
+            <element signature="e#4740#5383#0" expanded="true" />
+            <element signature="e#5382#5383#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2745,33 +2660,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4997#5640#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
-            <element signature="e#7839#7872#0" expanded="true" />
-            <element signature="e#8201#8234#0" expanded="true" />
-            <element signature="e#8542#8575#0" expanded="true" />
-            <element signature="e#8897#8930#0" expanded="true" />
-            <element signature="e#9250#9283#0" expanded="true" />
-            <element signature="e#9800#9833#0" expanded="true" />
-            <element signature="e#9936#9969#0" expanded="true" />
-            <element signature="e#10071#10104#0" expanded="true" />
-            <element signature="e#11617#12651#0" expanded="true" />
-            <element signature="e#12650#12651#0" expanded="true" />
-            <element signature="e#13447#14350#0" expanded="true" />
-            <element signature="e#14349#14350#0" expanded="true" />
-            <element signature="e#17680#17847#0" expanded="true" />
-            <element signature="e#17846#17847#0" expanded="true" />
-            <element signature="e#18360#18801#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#20141#20185#0" expanded="true" />
-            <element signature="e#21355#21930#0" expanded="true" />
-            <element signature="e#21929#21930#0" expanded="true" />
-            <element signature="e#21982#22143#0" expanded="true" />
-            <element signature="e#22142#22143#0" expanded="true" />
-            <element signature="e#22462#22988#0" expanded="true" />
-            <element signature="e#22987#22988#0" expanded="true" />
-            <element signature="e#24758#25306#0" expanded="true" />
-            <element signature="e#25305#25306#0" expanded="true" />
+            <element signature="e#4740#5383#0" expanded="true" />
+            <element signature="e#5382#5383#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2782,33 +2672,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4997#5640#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
-            <element signature="e#7839#7872#0" expanded="true" />
-            <element signature="e#8201#8234#0" expanded="true" />
-            <element signature="e#8542#8575#0" expanded="true" />
-            <element signature="e#8897#8930#0" expanded="true" />
-            <element signature="e#9250#9283#0" expanded="true" />
-            <element signature="e#9800#9833#0" expanded="true" />
-            <element signature="e#9936#9969#0" expanded="true" />
-            <element signature="e#10071#10104#0" expanded="true" />
-            <element signature="e#11617#12651#0" expanded="true" />
-            <element signature="e#12650#12651#0" expanded="true" />
-            <element signature="e#13447#14350#0" expanded="true" />
-            <element signature="e#14349#14350#0" expanded="true" />
-            <element signature="e#17680#17847#0" expanded="true" />
-            <element signature="e#17846#17847#0" expanded="true" />
-            <element signature="e#18360#18801#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#20141#20185#0" expanded="true" />
-            <element signature="e#21355#21930#0" expanded="true" />
-            <element signature="e#21929#21930#0" expanded="true" />
-            <element signature="e#21982#22143#0" expanded="true" />
-            <element signature="e#22142#22143#0" expanded="true" />
-            <element signature="e#22462#22988#0" expanded="true" />
-            <element signature="e#22987#22988#0" expanded="true" />
-            <element signature="e#24758#25306#0" expanded="true" />
-            <element signature="e#25305#25306#0" expanded="true" />
+            <element signature="e#4740#5383#0" expanded="true" />
+            <element signature="e#5382#5383#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2819,33 +2684,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4997#5640#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
-            <element signature="e#7839#7872#0" expanded="true" />
-            <element signature="e#8201#8234#0" expanded="true" />
-            <element signature="e#8542#8575#0" expanded="true" />
-            <element signature="e#8897#8930#0" expanded="true" />
-            <element signature="e#9250#9283#0" expanded="true" />
-            <element signature="e#9800#9833#0" expanded="true" />
-            <element signature="e#9936#9969#0" expanded="true" />
-            <element signature="e#10071#10104#0" expanded="true" />
-            <element signature="e#11617#12651#0" expanded="true" />
-            <element signature="e#12650#12651#0" expanded="true" />
-            <element signature="e#13447#14350#0" expanded="true" />
-            <element signature="e#14349#14350#0" expanded="true" />
-            <element signature="e#17680#17847#0" expanded="true" />
-            <element signature="e#17846#17847#0" expanded="true" />
-            <element signature="e#18360#18801#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#20141#20185#0" expanded="true" />
-            <element signature="e#21355#21930#0" expanded="true" />
-            <element signature="e#21929#21930#0" expanded="true" />
-            <element signature="e#21982#22143#0" expanded="true" />
-            <element signature="e#22142#22143#0" expanded="true" />
-            <element signature="e#22462#22988#0" expanded="true" />
-            <element signature="e#22987#22988#0" expanded="true" />
-            <element signature="e#24758#25306#0" expanded="true" />
-            <element signature="e#25305#25306#0" expanded="true" />
+            <element signature="e#4740#5383#0" expanded="true" />
+            <element signature="e#5382#5383#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2856,33 +2696,8 @@
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4997#5640#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
-            <element signature="e#7839#7872#0" expanded="true" />
-            <element signature="e#8201#8234#0" expanded="true" />
-            <element signature="e#8542#8575#0" expanded="true" />
-            <element signature="e#8897#8930#0" expanded="true" />
-            <element signature="e#9250#9283#0" expanded="true" />
-            <element signature="e#9800#9833#0" expanded="true" />
-            <element signature="e#9936#9969#0" expanded="true" />
-            <element signature="e#10071#10104#0" expanded="true" />
-            <element signature="e#11617#12651#0" expanded="true" />
-            <element signature="e#12650#12651#0" expanded="true" />
-            <element signature="e#13447#14350#0" expanded="true" />
-            <element signature="e#14349#14350#0" expanded="true" />
-            <element signature="e#17680#17847#0" expanded="true" />
-            <element signature="e#17846#17847#0" expanded="true" />
-            <element signature="e#18360#18801#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#20141#20185#0" expanded="true" />
-            <element signature="e#21355#21930#0" expanded="true" />
-            <element signature="e#21929#21930#0" expanded="true" />
-            <element signature="e#21982#22143#0" expanded="true" />
-            <element signature="e#22142#22143#0" expanded="true" />
-            <element signature="e#22462#22988#0" expanded="true" />
-            <element signature="e#22987#22988#0" expanded="true" />
-            <element signature="e#24758#25306#0" expanded="true" />
-            <element signature="e#25305#25306#0" expanded="true" />
+            <element signature="e#4740#5383#0" expanded="true" />
+            <element signature="e#5382#5383#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2899,7 +2714,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2918,13 +2732,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1845">
           <caret line="123" column="15" selection-start-line="123" selection-start-column="15" selection-end-line="123" selection-end-column="15" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java">
@@ -2933,33 +2747,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4997#5640#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
-            <element signature="e#7839#7872#0" expanded="true" />
-            <element signature="e#8201#8234#0" expanded="true" />
-            <element signature="e#8542#8575#0" expanded="true" />
-            <element signature="e#8897#8930#0" expanded="true" />
-            <element signature="e#9250#9283#0" expanded="true" />
-            <element signature="e#9800#9833#0" expanded="true" />
-            <element signature="e#9936#9969#0" expanded="true" />
-            <element signature="e#10071#10104#0" expanded="true" />
-            <element signature="e#11617#12651#0" expanded="true" />
-            <element signature="e#12650#12651#0" expanded="true" />
-            <element signature="e#13447#14350#0" expanded="true" />
-            <element signature="e#14349#14350#0" expanded="true" />
-            <element signature="e#17680#17847#0" expanded="true" />
-            <element signature="e#17846#17847#0" expanded="true" />
-            <element signature="e#18360#18801#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#20141#20185#0" expanded="true" />
-            <element signature="e#21355#21930#0" expanded="true" />
-            <element signature="e#21929#21930#0" expanded="true" />
-            <element signature="e#21982#22143#0" expanded="true" />
-            <element signature="e#22142#22143#0" expanded="true" />
-            <element signature="e#22462#22988#0" expanded="true" />
-            <element signature="e#22987#22988#0" expanded="true" />
-            <element signature="e#24758#25306#0" expanded="true" />
-            <element signature="e#25305#25306#0" expanded="true" />
+            <element signature="e#4740#5383#0" expanded="true" />
+            <element signature="e#5382#5383#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2976,7 +2765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2995,13 +2783,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1845">
           <caret line="123" column="15" selection-start-line="123" selection-start-column="15" selection-end-line="123" selection-end-column="15" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java">
@@ -3010,33 +2798,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4997#5640#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
-            <element signature="e#7839#7872#0" expanded="true" />
-            <element signature="e#8201#8234#0" expanded="true" />
-            <element signature="e#8542#8575#0" expanded="true" />
-            <element signature="e#8897#8930#0" expanded="true" />
-            <element signature="e#9250#9283#0" expanded="true" />
-            <element signature="e#9800#9833#0" expanded="true" />
-            <element signature="e#9936#9969#0" expanded="true" />
-            <element signature="e#10071#10104#0" expanded="true" />
-            <element signature="e#11617#12651#0" expanded="true" />
-            <element signature="e#12650#12651#0" expanded="true" />
-            <element signature="e#13447#14350#0" expanded="true" />
-            <element signature="e#14349#14350#0" expanded="true" />
-            <element signature="e#17680#17847#0" expanded="true" />
-            <element signature="e#17846#17847#0" expanded="true" />
-            <element signature="e#18360#18801#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#20141#20185#0" expanded="true" />
-            <element signature="e#21355#21930#0" expanded="true" />
-            <element signature="e#21929#21930#0" expanded="true" />
-            <element signature="e#21982#22143#0" expanded="true" />
-            <element signature="e#22142#22143#0" expanded="true" />
-            <element signature="e#22462#22988#0" expanded="true" />
-            <element signature="e#22987#22988#0" expanded="true" />
-            <element signature="e#24758#25306#0" expanded="true" />
-            <element signature="e#25305#25306#0" expanded="true" />
+            <element signature="e#4740#5383#0" expanded="true" />
+            <element signature="e#5382#5383#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3053,7 +2816,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3072,13 +2834,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1845">
           <caret line="123" column="15" selection-start-line="123" selection-start-column="15" selection-end-line="123" selection-end-column="15" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java">
@@ -3087,33 +2849,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4997#5640#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
-            <element signature="e#7839#7872#0" expanded="true" />
-            <element signature="e#8201#8234#0" expanded="true" />
-            <element signature="e#8542#8575#0" expanded="true" />
-            <element signature="e#8897#8930#0" expanded="true" />
-            <element signature="e#9250#9283#0" expanded="true" />
-            <element signature="e#9800#9833#0" expanded="true" />
-            <element signature="e#9936#9969#0" expanded="true" />
-            <element signature="e#10071#10104#0" expanded="true" />
-            <element signature="e#11617#12651#0" expanded="true" />
-            <element signature="e#12650#12651#0" expanded="true" />
-            <element signature="e#13447#14350#0" expanded="true" />
-            <element signature="e#14349#14350#0" expanded="true" />
-            <element signature="e#17680#17847#0" expanded="true" />
-            <element signature="e#17846#17847#0" expanded="true" />
-            <element signature="e#18360#18801#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#20141#20185#0" expanded="true" />
-            <element signature="e#21355#21930#0" expanded="true" />
-            <element signature="e#21929#21930#0" expanded="true" />
-            <element signature="e#21982#22143#0" expanded="true" />
-            <element signature="e#22142#22143#0" expanded="true" />
-            <element signature="e#22462#22988#0" expanded="true" />
-            <element signature="e#22987#22988#0" expanded="true" />
-            <element signature="e#24758#25306#0" expanded="true" />
-            <element signature="e#25305#25306#0" expanded="true" />
+            <element signature="e#4740#5383#0" expanded="true" />
+            <element signature="e#5382#5383#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3130,7 +2867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3149,13 +2885,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1845">
           <caret line="123" column="15" selection-start-line="123" selection-start-column="15" selection-end-line="123" selection-end-column="15" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java">
@@ -3164,33 +2900,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4997#5640#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
-            <element signature="e#7839#7872#0" expanded="true" />
-            <element signature="e#8201#8234#0" expanded="true" />
-            <element signature="e#8542#8575#0" expanded="true" />
-            <element signature="e#8897#8930#0" expanded="true" />
-            <element signature="e#9250#9283#0" expanded="true" />
-            <element signature="e#9800#9833#0" expanded="true" />
-            <element signature="e#9936#9969#0" expanded="true" />
-            <element signature="e#10071#10104#0" expanded="true" />
-            <element signature="e#11617#12651#0" expanded="true" />
-            <element signature="e#12650#12651#0" expanded="true" />
-            <element signature="e#13447#14350#0" expanded="true" />
-            <element signature="e#14349#14350#0" expanded="true" />
-            <element signature="e#17680#17847#0" expanded="true" />
-            <element signature="e#17846#17847#0" expanded="true" />
-            <element signature="e#18360#18801#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#20141#20185#0" expanded="true" />
-            <element signature="e#21355#21930#0" expanded="true" />
-            <element signature="e#21929#21930#0" expanded="true" />
-            <element signature="e#21982#22143#0" expanded="true" />
-            <element signature="e#22142#22143#0" expanded="true" />
-            <element signature="e#22462#22988#0" expanded="true" />
-            <element signature="e#22987#22988#0" expanded="true" />
-            <element signature="e#24758#25306#0" expanded="true" />
-            <element signature="e#25305#25306#0" expanded="true" />
+            <element signature="e#4740#5383#0" expanded="true" />
+            <element signature="e#5382#5383#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3207,7 +2918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3226,20 +2936,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1845">
           <caret line="123" column="15" selection-start-line="123" selection-start-column="15" selection-end-line="123" selection-end-column="15" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-        </state>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
@@ -3249,13 +2952,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="449" column="0" selection-start-line="449" selection-start-column="0" selection-end-line="449" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background.jpeg" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background.png">
       <provider selected="true" editor-type-id="images">
@@ -3271,7 +2968,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3279,14 +2975,69 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dialogue.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
           <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_devices.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="136" column="35" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4740#5383#0" expanded="true" />
+            <element signature="e#5382#5383#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="29" column="90" selection-start-line="29" selection-start-column="90" selection-end-line="29" selection-end-column="90" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#780#1068#0" expanded="true" />
+            <element signature="e#1067#1068#0" expanded="true" />
+            <element signature="e#1110#1398#0" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+        <state relative-caret-position="390">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -3294,72 +3045,53 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dialogue.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_devices.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2925">
-          <caret line="195" column="40" selection-start-line="195" selection-start-column="40" selection-end-line="195" selection-end-column="40" />
+        <state relative-caret-position="165">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/SensorActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="459" column="25" selection-start-line="459" selection-start-column="19" selection-end-line="459" selection-end-column="25" />
+        <state relative-caret-position="345">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="57" selection-start-line="2" selection-start-column="57" selection-end-line="2" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/solarsensei/com/gatech/edu/solartracker/ManualActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4997#5640#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
-            <element signature="e#7839#7872#0" expanded="true" />
-            <element signature="e#8201#8234#0" expanded="true" />
-            <element signature="e#8542#8575#0" expanded="true" />
-            <element signature="e#8897#8930#0" expanded="true" />
-            <element signature="e#9250#9283#0" expanded="true" />
-            <element signature="e#9800#9833#0" expanded="true" />
-            <element signature="e#9936#9969#0" expanded="true" />
-            <element signature="e#10071#10104#0" expanded="true" />
-            <element signature="e#11617#12651#0" expanded="true" />
-            <element signature="e#12650#12651#0" expanded="true" />
-            <element signature="e#13447#14350#0" expanded="true" />
-            <element signature="e#14349#14350#0" expanded="true" />
-            <element signature="e#17680#17847#0" expanded="true" />
-            <element signature="e#17846#17847#0" expanded="true" />
-            <element signature="e#18360#18801#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#20141#20185#0" expanded="true" />
-            <element signature="e#21355#21930#0" expanded="true" />
-            <element signature="e#21929#21930#0" expanded="true" />
-            <element signature="e#21982#22143#0" expanded="true" />
-            <element signature="e#22142#22143#0" expanded="true" />
-            <element signature="e#22462#22988#0" expanded="true" />
-            <element signature="e#22987#22988#0" expanded="true" />
-            <element signature="e#24758#25306#0" expanded="true" />
-            <element signature="e#25305#25306#0" expanded="true" />
+            <element signature="e#990#1265#0" expanded="true" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1307#1540#0" expanded="true" />
+            <element signature="e#1539#1540#0" expanded="true" />
+            <element signature="e#1580#1812#0" expanded="true" />
+            <element signature="e#1811#1812#0" expanded="true" />
+            <element signature="e#1850#2165#0" expanded="true" />
+            <element signature="e#2164#2165#0" expanded="true" />
           </folding>
         </state>
       </provider>
