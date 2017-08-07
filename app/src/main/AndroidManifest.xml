@@ -13,7 +13,7 @@
         android:icon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".controllers.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,11 +22,11 @@
         </activity>
 
         <activity
-            android:name=".SensorActivity"
+            android:name=".controllers.SensorActivity"
             android:label="SensorActivity" />
 
         <activity
-            android:name=".ManualActivity"
+            android:name=".controllers.ManualActivity"
             android:label="ManualActivity" />
     </application>
 

@@ -1,4 +1,4 @@
-package solarsensei.com.gatech.edu.solartracker;
+package solarsensei.com.gatech.edu.solartracker.controllers;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
+
+import solarsensei.com.gatech.edu.solartracker.R;
 
 /**
  * Created by timothybaba on 5/19/17.

@@ -1,12 +1,13 @@
-package solarsensei.com.gatech.edu.solartracker;
+package solarsensei.com.gatech.edu.solartracker.controllers;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import solarsensei.com.gatech.edu.solartracker.R;
 
 /**
  * Created by timothybaba on 8/7/17.
