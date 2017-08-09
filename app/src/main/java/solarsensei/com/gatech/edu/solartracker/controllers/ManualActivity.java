@@ -1,6 +1,10 @@
 package solarsensei.com.gatech.edu.solartracker.controllers;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.PaintDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +26,8 @@ public class ManualActivity extends AppCompatActivity {
     private Button leftButton;
     private Button upButton;
     private Button downButton;
+    private Drawable buttonBackground;
+    int color;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,11 +39,19 @@ public class ManualActivity extends AppCompatActivity {
         upButton  = (Button) findViewById(R.id.up);
         downButton = (Button) findViewById(R.id.down);
 
+       buttonBackground = rightButton.getBackground();
+
         rightButton.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
+
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    rightButton.setBackgroundColor(Color.GREEN);
                     //send turn right data;
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    rightButton.setBackground(buttonBackground);
+
                 }
+
                 return false;
             }
         });
@@ -45,7 +59,10 @@ public class ManualActivity extends AppCompatActivity {
         leftButton.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    leftButton.setBackgroundColor(Color.GREEN);
                     //send data
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    leftButton.setBackground(buttonBackground);
                 }
                 return  false;
             }
@@ -54,18 +71,24 @@ public class ManualActivity extends AppCompatActivity {
         upButton.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                   //send data
+                    upButton.setBackgroundColor(Color.GREEN);
+                    //send data
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    upButton.setBackground(buttonBackground);
                 }
-                return false;
+                return  false;
             }
         });
 
         downButton.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                   //send data;
+                    downButton.setBackgroundColor(Color.GREEN);
+                    //send data
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    downButton.setBackground(buttonBackground);
                 }
-                return false;
+                return  false;
             }
         });
     }

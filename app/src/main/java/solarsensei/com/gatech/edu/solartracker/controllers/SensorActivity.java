@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -25,14 +24,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
-
 import solarsensei.com.gatech.edu.solartracker.R;
+import solarsensei.com.gatech.edu.solartracker.model.ConnectThread;
+import solarsensei.com.gatech.edu.solartracker.model.ConnectedThread;
 
 /**
  * Created by timothybaba on 5/19/17.
@@ -52,20 +49,14 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private TextView rollView;
     private float[] mRotationMatrix = new float[9];
     private float[] mOrientationValues = new float[3];
-    private TextView connectionStatus;
     private TextView msg;
-    private TextView transmitView;
 
-    private  AlertDialog dialog;
-
-    private ProgressDialog mProgressDialog;
-
+    public static AlertDialog dialog;
+    public static ProgressDialog mProgressDialog;
     private SensorManager mSensorManager;
-
     private ArrayAdapter<String> mPairedDevicesArrayAdapter;
-    private BluetoothAdapter mBtAdapter;
 
-    private boolean connected = false;
+
 
     //Environmental sensors
     private Sensor mPressure;
@@ -78,23 +69,20 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private Sensor mRotation;
 
     //constants
-    private final static int REQUEST_ENABLE_BT = 1;
-    private final static int REQUEST_DISCOVER_BT = 2;
-
-
     private final String startTransfer = "START DATA TRANSFER";
     private final String stopTransfer = "STOP DATA TRANSFER";
 
-    private ConnectedThread mConnectedThread;
 
-    // SPP UUID service - this should work for most devices
+    //Standard SerialPortService ID
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
-
-    final int handlerState = 0;
+    //Bluetooth gadgets
     private BluetoothSocket btSocket = null;
+    private ConnectedThread mConnectedThread;
+    private String deviceAddress;
+    private BluetoothAdapter mBtAdapter = MainActivity.mBtAdapter;
 
-    private String deviceAdress;
+    //public static Context activity;
 
     @Override
     public final void onCreate(Bundle savedInstanceState) {
@@ -110,7 +98,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         pitchView = (TextView) findViewById(R.id.pitch);
         rollView = (TextView) findViewById(R.id.roll);
         mButton = (Button) findViewById(R.id.startPairing);
-        transmitView = (TextView) findViewById(R.id.transmitStatus);
 
         mButton.setText(startTransfer);
 
@@ -126,6 +113,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         mMagneticField = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         mRotation = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
+       // activity = this.getApplicationContext();
 
         IntentFilter filter = new IntentFilter();
 
@@ -142,13 +130,14 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             public void onClick(View v) {
                 if (mButton.getText().equals(startTransfer)) {
                     try {
-                        checkBluetoothStatus();
+                        //checkBluetoothStatus();
+                        startDialog();
                         mButton.setText(startTransfer);
                     } catch (Exception e) {
 
                     }
 
-                } else {
+                } else if (mButton.getText().equals(stopTransfer)){
                     try {
                         btSocket.close();
                         mButton.setText(startTransfer);
@@ -156,13 +145,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         //
                     }
                 }
-
-
-
             }
         });
-
-
     }
 
     @Override
@@ -175,56 +159,14 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     public final void onSensorChanged(SensorEvent event) {
         // Reads in sensor data.
         String mString;
+         boolean connected = ConnectedThread.connected;
         try {
-//            case Sensor.TYPE_PRESSURE:
-//                mString = String.format(getString(R.string.displayResult), event.values[0], "mbars");
-//                mPressureView.setText(mString);
-//                if (connected) {
-//                    mConnectedThread.write("B" + mString + "D");
-//                }
-//
-//                break;
-//            case Sensor.TYPE_AMBIENT_TEMPERATURE:
-//                mString = String.format(getString(R.string.displayResult), event.values[0], "°C");
-//                mTempView.setText(mString);
-//                if (connected) {
-//                    mConnectedThread.write("E" + mString + "F");
-//                }
-//
-//                break;
-//            case Sensor.TYPE_LIGHT:
-//                mString = String.format(getString(R.string.displayResult), event.values[0], "°lx");
-//                mLightView.setText(mString);
-//                if (connected) {
-//                    mConnectedThread.write("G" + mString + "H");
-//                }
-//
-//                break;
-//            case Sensor.TYPE_RELATIVE_HUMIDITY:
-//                mString = String.format(getString(R.string.displayResult), event.values[0], "%");
-//                mHumidityView.setText(mString);
-//                if (connected) {
-//                    mConnectedThread.write("I" + mString + "J");
-//                }
-//
-//                break;
-//            case Sensor.TYPE_MAGNETIC_FIELD:
-//                mString = String.format(getString(R.string.displayResult), event.values[0], "μT");
-//                mMagneticView.setText(mString);
-//                if (connected) {
-//                    mConnectedThread.write("K" + mString + "L");
-//                }
-//
-//                break;
-
-
-
             switch (event.sensor.getType()) {
                 case Sensor.TYPE_PRESSURE:
                      mString = String.format(getString(R.string.displayResult), event.values[0], "mbars");
                     mPressureView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("1" + mString);
+                        mConnectedThread.write("1" + mString + " ");
                     }
 
                     break;
@@ -232,7 +174,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "°C");
                     mTempView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("2" + mString);
+                        mConnectedThread.write("2" + mString + " ");
                     }
 
                     break;
@@ -240,7 +182,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "°lx");
                     mLightView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("3" + mString);
+                        mConnectedThread.write("3" + mString + " ");
                     }
 
                     break;
@@ -248,7 +190,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "%");
                     mHumidityView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("4" + mString);
+                        mConnectedThread.write("4" + mString + " ");
                     }
 
                     break;
@@ -256,7 +198,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mString = String.format(getString(R.string.displayResult), event.values[0], "μT");
                     mMagneticView.setText(mString);
                     if (connected) {
-                        mConnectedThread.write("5" + mString);
+                        mConnectedThread.write("5" + mString + " ");
                     }
 
                     break;
@@ -270,7 +212,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     pitchView.setText(mStringPitch);
                     rollView.setText(mStringRoll);
                     if (connected) {
-                        mConnectedThread.write("6A" + mStringAzimuth + "P" + mStringPitch + "R" + mStringRoll);
+                        mConnectedThread.write("6" + mStringAzimuth + "p" + mStringPitch + "p" + mStringRoll + "p");
                     }
 
                     break;
@@ -282,7 +224,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             throw e;
         }
     }
-
     @Override
     protected void onResume() {
         // Registers a listener for the sensor.
@@ -295,13 +236,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         mSensorManager.registerListener(this, mRotation, SensorManager.SENSOR_DELAY_NORMAL);
 
         if (mConnectedThread != null) {
-            BluetoothDevice device = mBtAdapter.getRemoteDevice(deviceAdress);
-            ConnectThread connect = new ConnectThread(device);
+            BluetoothDevice device = mBtAdapter.getRemoteDevice(deviceAddress);
+            ConnectThread connect = new ConnectThread(device, SensorActivity.this);
             connect.run();
+            mConnectedThread = connect.getmConnectedThread();
         }
-
-
-
     }
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -317,11 +256,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
 
             } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                System.out.println("Yes found");
                 //bluetooth device found;
                 msg.setText("Found devices");
                 BluetoothDevice device = (BluetoothDevice) intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                mPairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+                if (device.getName() != null) {
+                    mPairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+                }
+
             }
         }
     };
@@ -350,71 +291,50 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // Unregisters the sensor when the activity pauses.
         super.onPause();
         mSensorManager.unregisterListener(this);
-//        try {
-//            if (btSocket != null) {
-//                btSocket.close();
-//            }
-//
-//        } catch (IOException e) {
-//
-//        }
     }
 
 
     private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
 
-           // connectionStatus.setText("Connecting...");
-            //showProgressDialog();
-
-
-
             // Get the device MAC address, which is the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
-            deviceAdress = address;
+            deviceAddress = address;
 
             BluetoothDevice device = mBtAdapter.getRemoteDevice(address);
-           new bluetoothConnectTask(device, mProgressDialog).execute();
-
-            // Make an intent to start next activity while taking an extra which is the MAC address.
-//            Intent i = new Intent(DeviceListActivity.this, MainActivity.class);
-//            i.putExtra(EXTRA_DEVICE_ADDRESS, address);
-//            startActivity(i);
-
-
+           new bluetoothConnectTask(device).execute();
 
         }
     };
 
     private  class bluetoothConnectTask extends AsyncTask<Void, Void, Void> {
 
-        private ProgressDialog mProgressDialog;
         BluetoothDevice device;
 
-        bluetoothConnectTask(BluetoothDevice device, ProgressDialog mProgressDialog) {
+        bluetoothConnectTask(BluetoothDevice device) {
             this.device = device;
-            this.mProgressDialog = mProgressDialog;
 
         }
 
         @Override
         protected void onPreExecute() {
 
-            if (SensorActivity.this.mProgressDialog == null) {
-                SensorActivity.this.mProgressDialog = new ProgressDialog(SensorActivity.this);
-                SensorActivity.this.mProgressDialog.setMessage("Connecting...");
-                SensorActivity.this.mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            if (mProgressDialog == null) {
+                mProgressDialog = new ProgressDialog(SensorActivity.this);
+                mProgressDialog.setMessage("Connecting...");
+                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             }
 
-            SensorActivity.this.mProgressDialog.show();
+            mProgressDialog.show();
         }
 
         @Override
         protected Void doInBackground(Void... params) {
             // do tracks loading process here, don't update UI directly here because there is different mechanism for it
-            ConnectThread connect = new ConnectThread(device);
+            ConnectThread connect = new ConnectThread(device, SensorActivity.this);
             connect.run();
+           mConnectedThread = connect.getmConnectedThread();
             return null;
         }
 
@@ -422,7 +342,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         protected void onPostExecute(Void result) {
 
             // write display tracks logic here
-            SensorActivity.this.mProgressDialog.dismiss();  // dismiss dialog
+           mProgressDialog.dismiss();  // dismiss dialog
         }
     }
 
@@ -432,47 +352,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         //creates secure outgoing connecetion with BT device using UUID
     }
 
-    private void checkBluetoothStatus() {
-        mBtAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (mBtAdapter == null) {
-            Toast.makeText(getBaseContext(), "Bluetooth is not supported on this device", Toast.LENGTH_LONG).show();
-            finish();
-        } else {
-            if (!mBtAdapter.isEnabled()) {
-                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-            } else {
-                startDialog();
-            }
-        }
-
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_ENABLE_BT) {
-            if(resultCode != 0){
-                // bluetooth enabled
-                startDialog();
-
-            } else{
-                Toast.makeText(getBaseContext(), "You must enable bluetooth to transfer data", Toast.LENGTH_LONG).show();
-            }
-        }
-
-        if (requestCode == REQUEST_DISCOVER_BT) {
-            if (resultCode != 0) {
-                //bluetooth discoverable
-                mPairedDevicesArrayAdapter.clear();
-                mBtAdapter.startDiscovery();
-
-            }
-        }
-
-
-    }
 
     private void  startDialog() {
         final AlertDialog.Builder alert = new AlertDialog.Builder(SensorActivity.this);
@@ -506,23 +385,17 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             @Override
             public void onClick(View v)
             {
-
-                Intent discoverableIntent =
-                        new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-                discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-                startActivityForResult(discoverableIntent, REQUEST_DISCOVER_BT);
+                mPairedDevicesArrayAdapter.clear();
+                mBtAdapter.startDiscovery();
 
             }
         });
 
-        connectionStatus = (TextView) dialog.findViewById(R.id.connecting);
-        connectionStatus.setText(" ");
-        connectionStatus.setTextSize(40);
 
         //               Initialize array adapter for paired devices
         mPairedDevicesArrayAdapter = new ArrayAdapter<>(dialog.getContext(), R.layout.activity_devices);
 
-        // Find and set up the ListView for paired devices
+        // Find and set up the ListView for paired de`vices
         ListView pairedListView = (ListView) dialog.findViewById(R.id.paired_devices);
         pairedListView.setAdapter(mPairedDevicesArrayAdapter);
         pairedListView.setOnItemClickListener(mDeviceClickListener);
@@ -549,170 +422,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         }
     }
 
-    //create new class for connect thread
-    private class ConnectedThread extends Thread {
-        private final OutputStream mmOutStream;
-        private final BluetoothSocket mSocket;
 
-
-        //creation of the connect thread
-        public ConnectedThread(BluetoothSocket socket) {
-            this.mSocket = socket;
-
-            OutputStream tmpOut = null;
-
-            try {
-                //Create I/O streams for connection
-                tmpOut = socket.getOutputStream();
-            } catch (IOException e) { }
-
-            mmOutStream = tmpOut;
-        }
-
-        //write method
-        public void write(final String input) {
-            byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
-            try {
-                mmOutStream.write(msgBuffer);                //write bytes over BT connection via outstream
-                if (!connected) {
-                    connected = true;
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast toast =  Toast.makeText(dialog.getContext(), "Connected!",
-                                    Toast.LENGTH_SHORT);
-                            TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
-                            toast.setGravity(Gravity.CENTER, 0, 0);
-                            v.setTextColor(Color.GREEN);
-                            dialog.dismiss();
-                            toast.show();
-                        }
-                    });
-                }
-
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        transmitView.setText("sending data...");
-                    }
-                });
-
-
-            } catch (IOException e) {
-                //if you cannot write, close the application
-                //Toast toast = Toast.makeText(getBaseContext(), "Connection Failure", Toast.LENGTH_SHORT).show();
-                connected = false;
-
-                dialog.dismiss();
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        Toast toast =  Toast.makeText(getBaseContext(), "Couldn't send " + input + " to the other device ",
-                                Toast.LENGTH_SHORT);
-                        TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        v.setTextColor(Color.RED);
-                        toast.show();
-                    }
-                });
-
-                transmitView.setText("");
-
-              //  think about this
-                //finish();
-            }
-        }
-
-        public void cancel() {
-            try {
-                mSocket.close();
-            } catch (IOException e) {
-                //Log.e(TAG, "Could not close the connect socket", e);
-            }
-        }
-
-    }
-
-
-    private class ConnectThread extends Thread {
-        private final BluetoothSocket mmSocket;
-        private final BluetoothDevice mmDevice;
-
-        public ConnectThread(BluetoothDevice device) {
-            // Use a temporary object that is later assigned to mmSocket
-            // because mmSocket is final.
-            BluetoothSocket tmp = null;
-            mmDevice = device;
-
-            try {
-                // Get a BluetoothSocket to connect with the given BluetoothDevice.
-                // MY_UUID is the app's UUID string, also used in the server code.
-                tmp = device.createRfcommSocketToServiceRecord(BTMODULEUUID);
-            } catch (IOException e) {
-                Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_SHORT).show();
-            }
-            mmSocket = tmp;
-        }
-
-        public void run() {
-            // Cancel discovery because it otherwise slows down the connection.
-            mBtAdapter.cancelDiscovery();
-
-            try {
-                // Connect to the remote device through the socket. This call blocks
-                // until it succeeds or throws an exception.
-                mmSocket.connect();
-            } catch (IOException connectException) {
-                // Unable to connect; close the socket and return.
-
-                try {
-                    mmSocket.close();
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast toast =  Toast.makeText(dialog.getContext(), "No connection UUID match found!",
-                                    Toast.LENGTH_SHORT);
-                            TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
-                            toast.setGravity(Gravity.CENTER, 0, 0);
-                            v.setTextColor(Color.RED);
-                            toast.show();
-                        }
-                    });
-
-                } catch (IOException closeException) {
-                    Toast.makeText(getBaseContext(), "could not close socket", Toast.LENGTH_SHORT).show();
-                }
-                return;
-            }
-
-            // The connection attempt succeeded. Perform work associated with
-            // the connection in a separate thread.
-
-            mProgressDialog.dismiss();
-//
-            manageMyConnectedSocket(mmSocket);
-
-        }
-
-        // Closes the client socket and causes the thread to finish.
-        public void cancel() {
-            try {
-                mmSocket.close();
-            } catch (IOException e) {
-               // Log.e(TAG, "Could not close the client socket", e);
-            }
-        }
-    }
-
-    private void manageMyConnectedSocket(BluetoothSocket btSocket) {
-        //Toast.makeText(getBaseContext(), "connected!", Toast.LENGTH_LONG).show();
-        mConnectedThread = new ConnectedThread(btSocket);
-        mConnectedThread.start();
-        //I send a character when resuming.beginning transmission to check device is connected
-        //If it is not an exception will be thrown in the write method and finish() will be called
-        try {
-            mConnectedThread.write("x");
-            //Toast.makeText(getBaseContext(), "connected!", Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
-
-        }
-    }
 
 
 
