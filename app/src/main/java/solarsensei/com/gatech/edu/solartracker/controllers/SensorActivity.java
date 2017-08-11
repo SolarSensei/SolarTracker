@@ -2,12 +2,13 @@ package solarsensei.com.gatech.edu.solartracker.controllers;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -17,6 +18,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,9 +26,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import java.io.IOException;
 import java.util.Set;
-import java.util.UUID;
 import solarsensei.com.gatech.edu.solartracker.R;
 import solarsensei.com.gatech.edu.solartracker.model.ConnectThread;
 import solarsensei.com.gatech.edu.solartracker.model.ConnectedThread;
@@ -50,7 +50,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private float[] mRotationMatrix = new float[9];
     private float[] mOrientationValues = new float[3];
     private TextView msg;
-
+    private Button rightButton;
+    private Button leftButton;
+    private Button upButton;
+    private Button downButton;
+    private Drawable buttonBackground;
     public static AlertDialog dialog;
     public static ProgressDialog mProgressDialog;
     private SensorManager mSensorManager;
@@ -69,51 +73,184 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private Sensor mRotation;
 
     //constants
-    private final String startTransfer = "START DATA TRANSFER";
-    private final String stopTransfer = "STOP DATA TRANSFER";
+    private final String startTransfer = "START";
+    private final String stopTransfer = "STOP";
 
+    private boolean manualControl = false;
 
-    //Standard SerialPortService ID
-    private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     //Bluetooth gadgets
-    private BluetoothSocket btSocket = null;
     private ConnectedThread mConnectedThread;
-    private String deviceAddress;
     private BluetoothAdapter mBtAdapter = MainActivity.mBtAdapter;
 
-    //public static Context activity;
 
     @Override
     public final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sensor);
+        if (getIntent().hasExtra("Manual")) {
+            manualControl = true;
+        }
 
-        mPressureView = (TextView) findViewById(R.id.pressureReading);
-        mTempView = (TextView) findViewById(R.id.tempReading);
-        mLightView = (TextView) findViewById(R.id.lightReading);
-        mHumidityView = (TextView) findViewById(R.id.rHumidity);
-        mMagneticView = (TextView) findViewById(R.id.magneticField);
-        azimuthView = (TextView) findViewById(R.id.azimuth);
-        pitchView = (TextView) findViewById(R.id.pitch);
-        rollView = (TextView) findViewById(R.id.roll);
-        mButton = (Button) findViewById(R.id.startPairing);
+        if (manualControl) {
+            setContentView(R.layout.activity_manual);
 
-        mButton.setText(startTransfer);
+            rightButton = (Button) findViewById(R.id.right);
+            leftButton  =  (Button) findViewById(R.id.left);
+            upButton  = (Button) findViewById(R.id.up);
+            downButton = (Button) findViewById(R.id.down);
+            mButton = (Button) findViewById(R.id.startPairing);
 
-        // Gets an instance of the sensor service, and uses that to get an instance of
-        // a particular sensor.
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+            buttonBackground = rightButton.getBackground();
+            mButton.setText(startTransfer);
 
-        mPressure = mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
-        mTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
-        mLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        mRelativeHumidity = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
 
-        mMagneticField = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        mRotation = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+            rightButton.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
 
-       // activity = this.getApplicationContext();
+                    if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                        rightButton.setBackgroundColor(Color.GREEN);
+                        //send turn right data;
+                        boolean connected = ConnectedThread.connected;
+                        if (connected) {
+                            mConnectedThread.write("R" + " ");
+                        }
+                    } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                        rightButton.setBackground(buttonBackground);
+
+                    }
+
+                    return false;
+                }
+            });
+
+            leftButton.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                        leftButton.setBackgroundColor(Color.GREEN);
+                        //send data
+                        boolean connected = ConnectedThread.connected;
+                        if (connected) {
+                            mConnectedThread.write("L" + " ");
+                        }
+                    } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                        leftButton.setBackground(buttonBackground);
+                    }
+                    return  false;
+                }
+            });
+
+            upButton.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                        upButton.setBackgroundColor(Color.GREEN);
+                        //send data
+                        boolean connected = ConnectedThread.connected;
+                        if (connected) {
+                            mConnectedThread.write("U" + " ");
+                        }
+                    } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                        upButton.setBackground(buttonBackground);
+                    }
+                    return  false;
+                }
+            });
+
+            downButton.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                        downButton.setBackgroundColor(Color.GREEN);
+                        //send data
+                        boolean connected = ConnectedThread.connected;
+                        if (connected) {
+                            mConnectedThread.write("D" + " ");
+                        }
+                    } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                        downButton.setBackground(buttonBackground);
+                    }
+                    return  false;
+                }
+            });
+
+            mButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    if (mButton.getText().equals(startTransfer)) {
+                        try {
+                            startDialog();
+                            mButton.setText(startTransfer);
+                        } catch (Exception e) {
+
+                        }
+
+                    } else if (mButton.getText().equals(stopTransfer)){
+                        try {
+                            if (mConnectedThread != null) {
+                                mConnectedThread.cancel();
+                            }
+                            mButton.setText(startTransfer);
+                        } catch (Exception e) {
+                            //
+                        }
+                    }
+                }
+            });
+        } else {
+            setContentView(R.layout.activity_sensor);
+
+            mPressureView = (TextView) findViewById(R.id.pressureReading);
+            mTempView = (TextView) findViewById(R.id.tempReading);
+            mLightView = (TextView) findViewById(R.id.lightReading);
+            mHumidityView = (TextView) findViewById(R.id.rHumidity);
+            mMagneticView = (TextView) findViewById(R.id.magneticField);
+            azimuthView = (TextView) findViewById(R.id.azimuth);
+            pitchView = (TextView) findViewById(R.id.pitch);
+            rollView = (TextView) findViewById(R.id.roll);
+            TextView directionView = (TextView) findViewById(R.id.direction);
+            mButton = (Button) findViewById(R.id.startPairing);
+
+
+            directionView.setText("Auto");
+            mButton.setText(startTransfer);
+
+            // Gets an instance of the sensor service, and uses that to get an instance of
+            // a particular sensor.
+            mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+            mPressure = mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+            mTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+            mLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+            mRelativeHumidity = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+
+            mMagneticField = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+            mRotation = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+
+
+            mButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    if (mButton.getText().equals(startTransfer)) {
+                        try {
+                            startDialog();
+                            mButton.setText(startTransfer);
+                        } catch (Exception e) {
+
+                        }
+
+                    } else if (mButton.getText().equals(stopTransfer)){
+                        try {
+                            if (mConnectedThread != null) {
+                                mConnectedThread.cancel();
+                            }
+                            mButton.setText(startTransfer);
+                        } catch (Exception e) {
+                            //
+                        }
+                    }
+                }
+            });
+        }
 
         IntentFilter filter = new IntentFilter();
 
@@ -123,36 +260,12 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         registerReceiver(mReceiver, filter);
 
-
-        mButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (mButton.getText().equals(startTransfer)) {
-                    try {
-                        //checkBluetoothStatus();
-                        startDialog();
-                        mButton.setText(startTransfer);
-                    } catch (Exception e) {
-
-                    }
-
-                } else if (mButton.getText().equals(stopTransfer)){
-                    try {
-                        btSocket.close();
-                        mButton.setText(startTransfer);
-                    } catch (IOException e) {
-                        //
-                    }
-                }
-            }
-        });
     }
 
     @Override
     public final void onAccuracyChanged(Sensor sensor, int accuracy) {
         //To Do
-        // Data gets sent to solar panels only when accuracy is high
+        // manage accuracy changes
     }
 
     @Override
@@ -228,18 +341,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     protected void onResume() {
         // Registers a listener for the sensor.
         super.onResume();
-        mSensorManager.registerListener(this, mPressure, SensorManager.SENSOR_DELAY_NORMAL);
-        mSensorManager.registerListener(this, mTemperature, SensorManager.SENSOR_DELAY_NORMAL);
-        mSensorManager.registerListener(this, mLight, SensorManager.SENSOR_DELAY_NORMAL);
-        mSensorManager.registerListener(this, mRelativeHumidity, SensorManager.SENSOR_DELAY_NORMAL);
-        mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
-        mSensorManager.registerListener(this, mRotation, SensorManager.SENSOR_DELAY_NORMAL);
-
-        if (mConnectedThread != null) {
-            BluetoothDevice device = mBtAdapter.getRemoteDevice(deviceAddress);
-            ConnectThread connect = new ConnectThread(device, SensorActivity.this);
-            connect.run();
-            mConnectedThread = connect.getmConnectedThread();
+        if (!manualControl) {
+            mSensorManager.registerListener(this, mPressure, SensorManager.SENSOR_DELAY_NORMAL);
+            mSensorManager.registerListener(this, mTemperature, SensorManager.SENSOR_DELAY_NORMAL);
+            mSensorManager.registerListener(this, mLight, SensorManager.SENSOR_DELAY_NORMAL);
+            mSensorManager.registerListener(this, mRelativeHumidity, SensorManager.SENSOR_DELAY_NORMAL);
+            mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
+            mSensorManager.registerListener(this, mRotation, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 
@@ -248,17 +356,21 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             String action = intent.getAction();
 
             if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
-                //discovery starts, we can show progress dialog or perform other tasks
-                msg.setText("Scanning for new devices...");
+                if (mProgressDialog == null) {
+                    mProgressDialog = new ProgressDialog(SensorActivity.this);
+                    mProgressDialog.setMessage("Scanning for new Devices...");
+                    mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                }
+                mProgressDialog.show();
+               // msg.setText("Scanning for new devices...");
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                //discovery finishes, dismis progress dialog
+                mProgressDialog.dismiss();
             } else if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)){
-
 
             } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 //bluetooth device found;
-                msg.setText("Found devices");
-                BluetoothDevice device = (BluetoothDevice) intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                msg.setText(R.string.Found);
+                BluetoothDevice device =  intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if (device.getName() != null) {
                     mPairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
                 }
@@ -270,17 +382,14 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        // Don't forget to unregister the ACTION_FOUND receiver.
-
-        //Make sure device is registered first
+        // unregisters the bluetooth receiver.
         unregisterReceiver(mReceiver);
         try {
-            if (btSocket != null) {
-                btSocket.close();
+            if (mConnectedThread != null) {
+                mConnectedThread.cancel();
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
 
         }
     }
@@ -290,18 +399,19 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     protected void onPause() {
         // Unregisters the sensor when the activity pauses.
         super.onPause();
-        mSensorManager.unregisterListener(this);
+        if (!manualControl) {
+            mSensorManager.unregisterListener(this);
+        }
+
     }
 
 
     private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
 
-            // Get the device MAC address, which is the last 17 chars in the View
+            // Gets the device MAC address, which is the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
-            deviceAddress = address;
-
             BluetoothDevice device = mBtAdapter.getRemoteDevice(address);
            new bluetoothConnectTask(device).execute();
 
@@ -331,7 +441,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         @Override
         protected Void doInBackground(Void... params) {
-            // do tracks loading process here, don't update UI directly here because there is different mechanism for it
             ConnectThread connect = new ConnectThread(device, SensorActivity.this);
             connect.run();
            mConnectedThread = connect.getmConnectedThread();
@@ -340,18 +449,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         @Override
         protected void onPostExecute(Void result) {
-
-            // write display tracks logic here
-           mProgressDialog.dismiss();  // dismiss dialog
+           mProgressDialog.dismiss();
         }
     }
-
-    private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
-
-        return  device.createRfcommSocketToServiceRecord(BTMODULEUUID);
-        //creates secure outgoing connecetion with BT device using UUID
-    }
-
 
     private void  startDialog() {
         final AlertDialog.Builder alert = new AlertDialog.Builder(SensorActivity.this);
@@ -392,7 +492,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         });
 
 
-        //               Initialize array adapter for paired devices
+        // Initialize array adapter for paired devices
         mPairedDevicesArrayAdapter = new ArrayAdapter<>(dialog.getContext(), R.layout.activity_devices);
 
         // Find and set up the ListView for paired de`vices
@@ -408,7 +508,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         // Add previosuly paired devices to the array
         if (pairedDevices.size() > 0) {
-            // dialog.findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);//make title viewable
             msg.setText("Paired devices");
             for (BluetoothDevice device : pairedDevices) {
                 mPairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
@@ -416,14 +515,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         } else {
             String noDevices = getResources().getText(R.string.none_paired).toString();
             mPairedDevicesArrayAdapter.add(noDevices);
-            // dialog.findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);//make title viewable
-
-
         }
     }
-
-
-
-
-
 }

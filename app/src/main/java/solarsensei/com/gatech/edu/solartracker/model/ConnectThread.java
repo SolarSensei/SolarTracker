@@ -9,10 +9,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.util.UUID;
-
 import solarsensei.com.gatech.edu.solartracker.controllers.MainActivity;
 import solarsensei.com.gatech.edu.solartracker.controllers.SensorActivity;
 
@@ -22,7 +20,7 @@ import solarsensei.com.gatech.edu.solartracker.controllers.SensorActivity;
 
 public class ConnectThread extends Thread {
     private final BluetoothSocket mmSocket;
-    private final BluetoothDevice mmDevice;
+    //Standard SerialPortService ID
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private BluetoothAdapter mBtAdapter = MainActivity.mBtAdapter;
     private ConnectedThread mConnectedThread;
@@ -30,15 +28,10 @@ public class ConnectThread extends Thread {
     private AlertDialog dialog = SensorActivity.dialog;
 
     public ConnectThread(BluetoothDevice device, Activity activity) {
-        // Use a temporary object that is later assigned to mmSocket
-        // because mmSocket is final.
         BluetoothSocket tmp = null;
-        mmDevice = device;
         this.activity = activity;
-
         try {
             // Get a BluetoothSocket to connect with the given BluetoothDevice.
-            // MY_UUID is the app's UUID string, also used in the server code.
             tmp = device.createRfcommSocketToServiceRecord(BTMODULEUUID);
         } catch (IOException e) {
             Toast.makeText(activity.getBaseContext(), "Socket creation failed", Toast.LENGTH_SHORT).show();
@@ -80,7 +73,6 @@ public class ConnectThread extends Thread {
         // the connection in a separate thread.
 
         SensorActivity.mProgressDialog.dismiss();
-//
         manageMyConnectedSocket(mmSocket);
 
     }
@@ -90,24 +82,22 @@ public class ConnectThread extends Thread {
         try {
             mmSocket.close();
         } catch (IOException e) {
-            // Log.e(TAG, "Could not close the client socket", e);
         }
     }
 
     private void manageMyConnectedSocket(BluetoothSocket btSocket) {
-        //Toast.makeText(getBaseContext(), "connected!", Toast.LENGTH_LONG).show();
         mConnectedThread = new ConnectedThread(btSocket, activity);
         mConnectedThread.start();
-        //I send a character when resuming.beginning transmission to check device is connected
+        //I send a character when beginning transmission to check device is connected
         //If it is not an exception will be thrown in the write method and finish() will be called
         try {
             mConnectedThread.write("x");
-            //Toast.makeText(getBaseContext(), "connected!", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
 
         }
     }
 
+    //returns the connected Thread
     public ConnectedThread getmConnectedThread() {
         return mConnectedThread;
     }

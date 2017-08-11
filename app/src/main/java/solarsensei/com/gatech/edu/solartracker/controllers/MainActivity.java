@@ -36,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (bt_discoverable) {
-                    Intent manualActivity = new Intent(getApplicationContext(), ManualActivity.class);
-                    startActivity(manualActivity);
+                    Intent sensorActivity = new Intent(getApplicationContext(), SensorActivity.class);
+                    sensorActivity.putExtra("Manual", true);
+                    startActivity(sensorActivity);
                 }
 
             }

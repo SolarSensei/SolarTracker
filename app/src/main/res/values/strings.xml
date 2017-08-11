@@ -4,4 +4,8 @@
     <string name="displayResult" formatted="false">%.2f%s </string>
 
     <string name="none_paired">No devices paired</string>
+
+    <string name="Found">Found Devices</string>
+    <string name="sendData">Sending data...</string>
+    <string name="Stop">STOP</string>
 </resources>

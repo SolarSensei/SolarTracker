@@ -15,6 +15,7 @@
         android:layout_marginBottom="20dp"/>
 
     <LinearLayout
+        android:id="@+id/pressureLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -36,6 +37,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/tempLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -58,6 +60,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lightLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -80,6 +83,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/humidityLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -102,6 +106,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/geomagnetic_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -124,6 +129,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/azimuthLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -146,6 +152,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/pitchLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -168,6 +175,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/rollLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -182,6 +190,28 @@
 
         <TextView
             android:id="@+id/roll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_marginLeft="60dp"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Direction: " />
+
+        <TextView
+            android:id="@+id/direction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp" />

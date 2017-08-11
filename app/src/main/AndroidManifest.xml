@@ -25,9 +25,6 @@
             android:name=".controllers.SensorActivity"
             android:label="SensorActivity" />
 
-        <activity
-            android:name=".controllers.ManualActivity"
-            android:label="ManualActivity" />
     </application>
 
 </manifest>
