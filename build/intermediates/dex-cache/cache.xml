@@ -3,20 +3,11 @@
 
     <item
         is-multidex="true"
-        jar="/Users/timothybaba/Documents/School_Work/Summer 2017/Side project/solarTracker/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="710834f10d92ccae06326c543217759cf2157f99">
-        <dex dex="/Users/timothybaba/Documents/School_Work/Summer 2017/Side project/solarTracker/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_5578acb1120304926404a7a430ecf4bf52cf1ad9/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/timothybaba/Documents/School_Work/Summer 2017/Side project/bluetoothClient-dataWriter/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="38a11ddc26b9e269eb8034339398059907c1c2d0">
+        sha1="3ded5d99e476b32d6f64e12300762a00307ada54">
         <dex dex="/Users/timothybaba/Documents/School_Work/Summer 2017/Side project/bluetoothClient-dataWriter/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_43f9af692d53df74b6ffd607bacbd3e5ad6787ef/classes.dex" />
     </item>
     <item
@@ -27,15 +18,6 @@
         revision="25.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/Users/timothybaba/Documents/School_Work/Summer 2017/Side project/bluetoothClient-dataWriter/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_8ba1e9e10ac3998c33f8814ec82eabc424002204/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/timothybaba/Documents/School_Work/Summer 2017/Side project/solarTracker/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/timothybaba/Documents/School_Work/Summer 2017/Side project/solarTracker/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_dc90802c84c03f76a40c1a8b74718d8d7cc8b6b4/classes.dex" />
     </item>
 
 </items>

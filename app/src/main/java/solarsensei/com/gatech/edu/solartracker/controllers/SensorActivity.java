@@ -99,6 +99,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             upButton  = (Button) findViewById(R.id.up);
             downButton = (Button) findViewById(R.id.down);
             mButton = (Button) findViewById(R.id.startPairing);
+            final TextView transmitView = (TextView)findViewById(R.id.transmitStatus);
+            ConnectedThread.connected = false;
 
             buttonBackground = rightButton.getBackground();
             mButton.setText(startTransfer);
@@ -112,10 +114,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         //send turn right data;
                         boolean connected = ConnectedThread.connected;
                         if (connected) {
-                            mConnectedThread.write("R" + " ");
+                            mConnectedThread.write("RR" + " ");
                         }
                     } else if (event.getAction() == MotionEvent.ACTION_UP) {
                         rightButton.setBackground(buttonBackground);
+                        mConnectedThread.write("R " + " ");
 
                     }
 
@@ -130,10 +133,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         //send data
                         boolean connected = ConnectedThread.connected;
                         if (connected) {
-                            mConnectedThread.write("L" + " ");
+                            mConnectedThread.write("LL" + " ");
                         }
                     } else if (event.getAction() == MotionEvent.ACTION_UP) {
                         leftButton.setBackground(buttonBackground);
+                        mConnectedThread.write("L " + " ");
                     }
                     return  false;
                 }
@@ -146,10 +150,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         //send data
                         boolean connected = ConnectedThread.connected;
                         if (connected) {
-                            mConnectedThread.write("U" + " ");
+                            mConnectedThread.write("UU" + " ");
                         }
                     } else if (event.getAction() == MotionEvent.ACTION_UP) {
                         upButton.setBackground(buttonBackground);
+                        mConnectedThread.write("U " + " ");
                     }
                     return  false;
                 }
@@ -162,10 +167,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         //send data
                         boolean connected = ConnectedThread.connected;
                         if (connected) {
-                            mConnectedThread.write("D" + " ");
+                            mConnectedThread.write("DD" + " ");
                         }
                     } else if (event.getAction() == MotionEvent.ACTION_UP) {
                         downButton.setBackground(buttonBackground);
+                        mConnectedThread.write("D " + " ");
                     }
                     return  false;
                 }
@@ -189,6 +195,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                                 mConnectedThread.cancel();
                             }
                             mButton.setText(startTransfer);
+                            transmitView.setText("");
                         } catch (Exception e) {
                             //
                         }
@@ -208,6 +215,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             rollView = (TextView) findViewById(R.id.roll);
             TextView directionView = (TextView) findViewById(R.id.direction);
             mButton = (Button) findViewById(R.id.startPairing);
+            ConnectedThread.connected = false;
 
 
             directionView.setText("Auto");
@@ -263,81 +271,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
-        //To Do
-        // manage accuracy changes
-    }
-
-    @Override
-    public final void onSensorChanged(SensorEvent event) {
-        // Reads in sensor data.
-        String mString;
-         boolean connected = ConnectedThread.connected;
-        try {
-            switch (event.sensor.getType()) {
-                case Sensor.TYPE_PRESSURE:
-                     mString = String.format(getString(R.string.displayResult), event.values[0], "mbars");
-                    mPressureView.setText(mString);
-                    if (connected) {
-                        mConnectedThread.write("1" + mString + " ");
-                    }
-
-                    break;
-                case Sensor.TYPE_AMBIENT_TEMPERATURE:
-                    mString = String.format(getString(R.string.displayResult), event.values[0], "°C");
-                    mTempView.setText(mString);
-                    if (connected) {
-                        mConnectedThread.write("2" + mString + " ");
-                    }
-
-                    break;
-                case Sensor.TYPE_LIGHT:
-                    mString = String.format(getString(R.string.displayResult), event.values[0], "°lx");
-                    mLightView.setText(mString);
-                    if (connected) {
-                        mConnectedThread.write("3" + mString + " ");
-                    }
-
-                    break;
-                case Sensor.TYPE_RELATIVE_HUMIDITY:
-                    mString = String.format(getString(R.string.displayResult), event.values[0], "%");
-                    mHumidityView.setText(mString);
-                    if (connected) {
-                        mConnectedThread.write("4" + mString + " ");
-                    }
-
-                    break;
-                case Sensor.TYPE_MAGNETIC_FIELD:
-                    mString = String.format(getString(R.string.displayResult), event.values[0], "μT");
-                    mMagneticView.setText(mString);
-                    if (connected) {
-                        mConnectedThread.write("5" + mString + " ");
-                    }
-
-                    break;
-                case Sensor.TYPE_ROTATION_VECTOR:
-                    SensorManager.getRotationMatrixFromVector(mRotationMatrix, event.values);
-                    SensorManager.getOrientation(mRotationMatrix, mOrientationValues);
-                    String mStringAzimuth = String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[0]), "°");
-                    String mStringPitch = String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[1]), "°");
-                    String mStringRoll = String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[2]), "°");
-                    azimuthView.setText(mStringAzimuth);
-                    pitchView.setText(mStringPitch);
-                    rollView.setText(mStringRoll);
-                    if (connected) {
-                        mConnectedThread.write("6" + mStringAzimuth + "p" + mStringPitch + "p" + mStringRoll + "p");
-                    }
-
-                    break;
-                default:
-                    break;
-            }
-
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-    @Override
     protected void onResume() {
         // Registers a listener for the sensor.
         super.onResume();
@@ -349,7 +282,89 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
             mSensorManager.registerListener(this, mRotation, SensorManager.SENSOR_DELAY_NORMAL);
         }
+
     }
+
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
+        //To Do
+        // manage accuracy changes
+    }
+
+    @Override
+    public final void onSensorChanged(SensorEvent event) {
+        // Reads in sensor data.
+        if (!manualControl) {
+            String mString;
+            boolean connected = ConnectedThread.connected;
+            try {
+                switch (event.sensor.getType()) {
+                    case Sensor.TYPE_PRESSURE:
+                        mString = String.format(getString(R.string.displayResult), event.values[0], "mbars");
+                        mPressureView.setText(mString);
+                        if (connected) {
+                            mConnectedThread.write("1" + mString + " ");
+                        }
+
+                        break;
+                    case Sensor.TYPE_AMBIENT_TEMPERATURE:
+                        mString = String.format(getString(R.string.displayResult), event.values[0], "°C");
+                        mTempView.setText(mString);
+                        if (connected) {
+                            mConnectedThread.write("2" + mString + " ");
+                        }
+
+                        break;
+                    case Sensor.TYPE_LIGHT:
+                        mString = String.format(getString(R.string.displayResult), event.values[0], "°lx");
+                        mLightView.setText(mString);
+                        if (connected) {
+                            mConnectedThread.write("3" + mString + " ");
+                        }
+
+                        break;
+                    case Sensor.TYPE_RELATIVE_HUMIDITY:
+                        mString = String.format(getString(R.string.displayResult), event.values[0], "%");
+                        mHumidityView.setText(mString);
+                        if (connected) {
+                            mConnectedThread.write("4" + mString + " ");
+                        }
+
+                        break;
+                    case Sensor.TYPE_MAGNETIC_FIELD:
+                        mString = String.format(getString(R.string.displayResult), event.values[0], "μT");
+                        mMagneticView.setText(mString);
+                        if (connected) {
+                            mConnectedThread.write("5" + mString + " ");
+                        }
+
+                        break;
+                    case Sensor.TYPE_ROTATION_VECTOR:
+                        SensorManager.getRotationMatrixFromVector(mRotationMatrix, event.values);
+                        SensorManager.getOrientation(mRotationMatrix, mOrientationValues);
+                        String mStringAzimuth = String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[0]), "°");
+                        String mStringPitch = String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[1]), "°");
+                        String mStringRoll = String.format(getString(R.string.displayResult), Math.toDegrees(mOrientationValues[2]), "°");
+                        azimuthView.setText(mStringAzimuth);
+                        pitchView.setText(mStringPitch);
+                        rollView.setText(mStringRoll);
+                        if (connected) {
+                            mConnectedThread.write("6" + mStringAzimuth + "p" + mStringPitch + "p" + mStringRoll + "p");
+                        }
+
+                        break;
+                    default:
+                        break;
+                }
+
+            } catch (Exception e) {
+                throw e;
+            }
+
+        }
+
+    }
+
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
@@ -361,7 +376,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     mProgressDialog.setMessage("Scanning for new Devices...");
                     mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                 }
-                mProgressDialog.show();
+               // mProgressDialog.show();
+
                // msg.setText("Scanning for new devices...");
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 mProgressDialog.dismiss();
@@ -378,6 +394,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             }
         }
     };
+
 
     @Override
     protected void onDestroy() {
@@ -404,7 +421,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         }
 
     }
-
 
     private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
@@ -436,7 +452,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             }
 
-            mProgressDialog.show();
+               // mProgressDialog.show();
         }
 
         @Override

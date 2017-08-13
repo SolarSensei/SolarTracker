@@ -62,11 +62,12 @@ import solarsensei.com.gatech.edu.solartracker.controllers.SensorActivity;
                         TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         v.setTextColor(Color.GREEN);
-                        dialog.dismiss();
                         toast.show();
                     }
                 });
             }
+            dialog.dismiss();
+
 
             activity.runOnUiThread(new Runnable() {
                 public void run() {
